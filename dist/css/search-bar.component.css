@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
 }
+
 input,
 .search-button {
   height: 2rem;
@@ -27,9 +28,9 @@ input {
   border-radius: 0 0.5rem 0.5rem 0;
   cursor: pointer;
   transition: 0.2s ease-in;
-  &:hover {
-    background-color: #cc2515;
-  }
+}
+.search-button:hover {
+  background-color: #cc2515;
 }
 
 .filter-img {
@@ -39,7 +40,7 @@ input {
   border-radius: 0.3rem;
   cursor: pointer;
   transition: 0.2s ease-in;
-  &:hover {
-    background-color: #cc2515;
-  }
 }
+.filter-img:hover {
+  background-color: #cc2515;
+}/*# sourceMappingURL=search-bar.component.css.map */
