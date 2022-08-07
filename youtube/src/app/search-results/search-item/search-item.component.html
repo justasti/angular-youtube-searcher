@@ -1,1 +1,27 @@
-<p>search-item works!</p>
+<div class="result-card">
+  <img
+    [src]="item.imagePath"
+    alt=""
+    class="video-thumbnail"
+  />
+  <div class="stats">
+    <span class="stats__item"
+      ><img class="stats__image" src="../../../assets/images/viewed.svg" />
+      <p>{{ item.stats.views }}</p></span
+    >
+    <span class="stats__item"
+      ><img class="stats__image" src="../../../assets/images/liked.svg" />
+      <p>{{ item.stats.likes }}</p></span
+    >
+    <span class="stats__item"
+      ><img class="stats__image" src="../../../assets/images/dislike.svg" />
+      <p>{{ item.stats.dislikes }}</p></span
+    >
+    <span class="stats__item"
+      ><img class="stats__image" src="../../../assets/images/comment.svg" />
+      <p>{{ item.stats.comments }}</p></span
+    >
+  </div>
+  <h2 class="video-title">{{ item.title }}</h2>
+  <button class="more-info">more...</button>
+</div>
