@@ -3,4 +3,5 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 2rem;
+  align-items: stretch;
 }/*# sourceMappingURL=search-results.component.css.map */
