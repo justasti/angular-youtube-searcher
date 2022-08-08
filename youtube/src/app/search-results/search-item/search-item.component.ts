@@ -17,4 +17,20 @@ export default class SearchItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getBorderColor(item: SearchItem): {} {
+    let color = '';
+    const currentDate = new Date().toISOString();
+    let dateDifference = Date.parse(currentDate) - Date.parse(item.snippet.publishedAt)
+    if (dateDifference / 86400000 > 182) {
+      color = 'red';
+    } else if (dateDifference / 86400000 > 30) {
+      color = 'yellow'
+    } else if (dateDifference / 86400000 > 7) {
+      color = 'green'
+    } else {
+      color = 'blue'
+    }
+    return {borderBottom: `7px ${color} solid`}
+  }
 }

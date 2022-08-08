@@ -1,4 +1,4 @@
-<div class="result-card">
+<div class="result-card" [ngStyle]="getBorderColor(item)">
   <img
     [src]="item.snippet.thumbnails.maxres.url"
     alt=""
