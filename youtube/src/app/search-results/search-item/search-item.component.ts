@@ -21,16 +21,16 @@ export default class SearchItemComponent implements OnInit {
   getBorderColor(item: SearchItem): {} {
     let color = '';
     const currentDate = new Date().toISOString();
-    let dateDifference = Date.parse(currentDate) - Date.parse(item.snippet.publishedAt)
+    const dateDifference = Date.parse(currentDate) - Date.parse(item.snippet.publishedAt);
     if (dateDifference / 86400000 > 182) {
       color = 'red';
     } else if (dateDifference / 86400000 > 30) {
-      color = 'yellow'
+      color = 'yellow';
     } else if (dateDifference / 86400000 > 7) {
-      color = 'green'
+      color = 'green';
     } else {
-      color = 'blue'
+      color = 'blue';
     }
-    return {borderBottom: `7px ${color} solid`}
+    return { borderBottom: `7px ${color} solid` };
   }
 }

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export default class AppComponent {
   title = 'youtube';
+
+  showFilters: boolean = false;
+
+  onToggleFilters() {
+    this.showFilters = !this.showFilters;
+  }
 }
