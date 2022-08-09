@@ -2,7 +2,7 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-useless-constructor */
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import items from '../items';
 
 @Component({
@@ -13,6 +13,7 @@ import items from '../items';
 
 export default class SearchResultsComponent implements OnInit {
   videos = items;
+  @Input() searchPhrase: string = '';
 
   constructor() {}
 

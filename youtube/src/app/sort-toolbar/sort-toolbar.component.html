@@ -2,13 +2,13 @@
   <p>Sorting by:</p>
   <ul>
     <a href="#">
-      <li>date</li>
+      <li (click)="onSort($event)">date</li>
     </a>
     <a href="#">
-      <li>count of views</li>
+      <li (click)="onSort($event)">count of views</li>
     </a>
     <a href="#">
-      <li>by word or by sentence</li>
+      <li (click)="onSort($event)">by word or by sentence</li>
     </a>
   </ul>
   <form><input type="text" name="search-by" id="search-by" /></form>

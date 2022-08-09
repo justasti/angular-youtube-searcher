@@ -1,3 +1,3 @@
 <div class="results-grid">
-  <app-search-item *ngFor="let video of videos" [item]='video'></app-search-item>
+  <app-search-item *ngFor="let video of videos | filter: searchPhrase" [item]='video'></app-search-item>
 </div>

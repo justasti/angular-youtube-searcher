@@ -8,6 +8,8 @@ import UserInfoComponent from './header/user-info/user-info.component';
 import SortToolbarComponent from './sort-toolbar/sort-toolbar.component';
 import SearchResultsComponent from './search-results/search-results.component';
 import SearchItemComponent from './search-results/search-item/search-item.component';
+import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import SearchItemComponent from './search-results/search-item/search-item.compon
     SortToolbarComponent,
     SearchResultsComponent,
     SearchItemComponent,
+    FilterPipe,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -13,4 +13,9 @@ export default class SortToolbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onSort(event: MouseEvent) {
+    const target = event.target as HTMLTextAreaElement;
+    return target;
+  }
 }

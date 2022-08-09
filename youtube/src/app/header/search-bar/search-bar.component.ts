@@ -17,6 +17,12 @@ import {
 export default class SearchBarComponent implements OnInit {
   @Output() toggleFilters = new EventEmitter<boolean>();
 
+  @Output() toggleSearchResults = new EventEmitter<boolean>();
+
+  @Output() search = new EventEmitter<string>();
+
+  searchPhrase: string = '';
+
   showFilters = false;
 
   constructor() {}
@@ -26,5 +32,10 @@ export default class SearchBarComponent implements OnInit {
   onToggleFilters() {
     this.showFilters = !this.showFilters;
     this.toggleFilters.emit(this.showFilters);
+  }
+
+  onToggleSearch() {
+    this.toggleSearchResults.emit(true);
+    this.search.emit(this.searchPhrase);
   }
 }
