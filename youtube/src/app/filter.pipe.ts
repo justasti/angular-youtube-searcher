@@ -11,12 +11,8 @@ export class FilterPipe implements PipeTransform {
     if (videos.length === 0 || filterText === '') {
       return videos;
     }
-    videos.forEach((video) => {
-      if (video.snippet.title.toLowerCase().includes(filterText)) {
-        filteredVideos.push(video)
-      }
-    });
-    return filteredVideos;
+    return videos.filter((video) => {
+      return video.snippet.title.toLowerCase().includes(filterText.toLowerCase());
+    })
   }
-
 }
