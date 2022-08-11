@@ -6,13 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import items from '../items';
 
 @Component({
-  selector: 'app-search-results',
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss'],
+  selector: 'app-video-items',
+  templateUrl: './video-items.component.html',
+  styleUrls: ['./video-items.component.scss'],
 })
 
-export default class SearchResultsComponent implements OnInit {
+export default class VideoItemsComponent implements OnInit {
   videos = items;
+
   @Input() searchPhrase: string = '';
 
   constructor() {}

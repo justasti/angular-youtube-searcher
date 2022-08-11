@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
+import FilterPipe from './video-items/pipes/filter.pipe';
 import AppComponent from './app.component';
 import HeaderComponent from './header/header.component';
 import SearchBarComponent from './header/search-bar/search-bar.component';
 import UserInfoComponent from './header/user-info/user-info.component';
 import SortToolbarComponent from './sort-toolbar/sort-toolbar.component';
-import SearchResultsComponent from './search-results/search-results.component';
-import SearchItemComponent from './search-results/search-item/search-item.component';
-import { FormsModule } from '@angular/forms';
-import { FilterPipe } from './filter.pipe';
+import VideoItemsComponent from './video-items/video-items.component';
+import SearchItemComponent from './video-items/search-item/search-item.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { FilterPipe } from './filter.pipe';
     SearchBarComponent,
     UserInfoComponent,
     SortToolbarComponent,
-    SearchResultsComponent,
+    VideoItemsComponent,
     SearchItemComponent,
     FilterPipe,
   ],

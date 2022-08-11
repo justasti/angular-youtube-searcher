@@ -1,5 +1,5 @@
-import SearchItem from './search-results/search-item.model';
-import ThumbnailItem from './search-results/thumbnail.model';
+import SearchItem from './video-items/models/search-item.model';
+import ThumbnailItem from './video-items/models/thumbnail.model';
 
 export default [
   new SearchItem(
