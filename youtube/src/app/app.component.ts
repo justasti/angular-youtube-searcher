@@ -14,7 +14,7 @@ export default class AppComponent {
 
   showSearchResults: boolean = false;
 
-  @Output() sortBy: { sortParam: string, direction: string } = { sortParam: '', direction: '' };
+  @Output() sortBy: { sortParam: string, direction: string, keyphrase: string } = { sortParam: '', direction: '', keyphrase: '' };
 
   onToggleFilters() {
     this.showFilters = !this.showFilters;
@@ -28,7 +28,7 @@ export default class AppComponent {
     this.searchPhrase = event;
   }
 
-  onSort(event: { sortParam: string, direction: string }) {
+  onSort(event: { sortParam: string, direction: string, keyphrase: string }) {
     this.sortBy = event;
   }
 }

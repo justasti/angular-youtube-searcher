@@ -6,7 +6,12 @@ import SearchItem from '../models/search-item.model';
   name: 'sort',
 })
 export default class SortPipe implements PipeTransform {
-  transform(videos: SearchItem[], sortBy?: string, sortDirection?: string): SearchItem[] {
+  transform(
+    videos: SearchItem[],
+    sortBy?: string,
+    sortDirection?: string,
+    keyphrase?: string,
+  ): SearchItem[] {
     let searchResults: SearchItem[] = [];
     if (sortBy === '') return videos;
     if (sortBy === 'date') {
@@ -16,6 +21,9 @@ export default class SortPipe implements PipeTransform {
       searchResults = videos
         .sort((a: SearchItem, b:SearchItem) => parseInt(a.statistics.viewCount, 10)
           - parseInt(b.statistics.viewCount, 10));
+    } else if (sortBy === 'word' && keyphrase !== undefined) {
+      searchResults = videos.sort((a) => (a.snippet.title.toLowerCase()
+        .includes(keyphrase.toLowerCase()) ? -1 : 1));
     }
     if (sortDirection === 'desc') {
       searchResults = searchResults.reverse();

@@ -11,5 +11,5 @@
       <li>by word or by sentence</li>
     </a>
   </ul>
-  <form><input type="text" name="search-by" id="search-by" /></form>
+  <form><input type="text" name="search-by" id="search-by" (keyup)="sortByWord()" [(ngModel)]="sortKeyphrase"/></form>
 </div>

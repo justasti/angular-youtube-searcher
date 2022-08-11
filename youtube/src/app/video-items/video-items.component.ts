@@ -17,13 +17,15 @@ import items from '../items';
   styleUrls: ['./video-items.component.scss'],
 })
 export default class VideoItemsComponent implements OnInit, OnChanges {
-  @Input() sortBy: { sortParam: string, direction: string } = { sortParam: '', direction: 'asc' };
+  @Input() sortBy: { sortParam: string, direction: string, keyphrase: string } = { sortParam: '', direction: 'asc', keyphrase: '' };
 
   @Input() searchPhrase: string = '';
 
-  sortParam = this.sortBy.sortParam;
+  sortParam = '';
 
-  sortDirection = this.sortBy.direction;
+  sortDirection = '';
+
+  sortKeyphrase = '';
 
   videos = items;
 
@@ -35,5 +37,6 @@ export default class VideoItemsComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.sortParam = this.sortBy.sortParam;
     this.sortDirection = this.sortBy.direction;
+    this.sortKeyphrase = this.sortBy.keyphrase;
   }
 }

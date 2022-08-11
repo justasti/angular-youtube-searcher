@@ -15,16 +15,22 @@ import {
   styleUrls: ['./sort-toolbar.component.scss'],
 })
 export default class SortToolbarComponent implements OnInit {
-  @Output() sort = new EventEmitter<{ sortParam: string, direction: string }>();
+  @Output() sort = new EventEmitter<{ sortParam: string, direction: string, keyphrase: string }>();
 
   direction: string = 'asc';
+
+  sortKeyphrase: string = '';
 
   constructor() {}
 
   ngOnInit(): void {}
 
   onSort(sortBy: string) {
-    this.sort.emit({ sortParam: sortBy, direction: this.direction });
+    this.sort.emit({ sortParam: sortBy, direction: this.direction, keyphrase: this.sortKeyphrase });
     this.direction = this.direction === 'asc' ? 'desc' : 'asc';
+  }
+
+  sortByWord() {
+    this.sort.emit({ sortParam: 'word', direction: this.direction, keyphrase: this.sortKeyphrase });
   }
 }
