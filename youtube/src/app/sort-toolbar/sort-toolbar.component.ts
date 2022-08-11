@@ -2,7 +2,12 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-useless-constructor */
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-sort-toolbar',
@@ -10,12 +15,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sort-toolbar.component.scss'],
 })
 export default class SortToolbarComponent implements OnInit {
+  @Output() sort = new EventEmitter<{ sortParam: string, direction: string }>();
+
+  direction: string = 'asc';
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  onSort(event: MouseEvent) {
-    const target = event.target as HTMLTextAreaElement;
-    return target;
+  onSort(sortBy: string) {
+    this.sort.emit({ sortParam: sortBy, direction: this.direction });
+    this.direction = this.direction === 'asc' ? 'desc' : 'asc';
   }
 }

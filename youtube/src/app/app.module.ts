@@ -10,6 +10,7 @@ import UserInfoComponent from './header/user-info/user-info.component';
 import SortToolbarComponent from './sort-toolbar/sort-toolbar.component';
 import VideoItemsComponent from './video-items/video-items.component';
 import SearchItemComponent from './video-items/search-item/search-item.component';
+import SortPipe from './video-items/pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import SearchItemComponent from './video-items/search-item/search-item.component
     VideoItemsComponent,
     SearchItemComponent,
     FilterPipe,
+    SortPipe,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],

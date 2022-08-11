@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,8 @@ export default class AppComponent {
 
   showSearchResults: boolean = false;
 
+  @Output() sortBy: { sortParam: string, direction: string } = { sortParam: '', direction: '' };
+
   onToggleFilters() {
     this.showFilters = !this.showFilters;
   }
@@ -24,5 +26,9 @@ export default class AppComponent {
 
   onSearch(event: string) {
     this.searchPhrase = event;
+  }
+
+  onSort(event: { sortParam: string, direction: string }) {
+    this.sortBy = event;
   }
 }

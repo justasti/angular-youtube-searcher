@@ -2,7 +2,13 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-useless-constructor */
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+} from '@angular/core';
+
 import items from '../items';
 
 @Component({
@@ -10,13 +16,24 @@ import items from '../items';
   templateUrl: './video-items.component.html',
   styleUrls: ['./video-items.component.scss'],
 })
-
-export default class VideoItemsComponent implements OnInit {
-  videos = items;
+export default class VideoItemsComponent implements OnInit, OnChanges {
+  @Input() sortBy: { sortParam: string, direction: string } = { sortParam: '', direction: 'asc' };
 
   @Input() searchPhrase: string = '';
 
+  sortParam = this.sortBy.sortParam;
+
+  sortDirection = this.sortBy.direction;
+
+  videos = items;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    this.sortParam = this.sortBy.sortParam;
+    this.sortDirection = this.sortBy.direction;
+  }
 }
