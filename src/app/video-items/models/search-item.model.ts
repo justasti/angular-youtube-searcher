@@ -1,4 +1,4 @@
-import ThumbnailItem from './thumbnail.model';
+import Thumbnail from '../../shared/interfaces/thumbnail.interface';
 
 export default class SearchItem {
   constructor(
@@ -11,11 +11,11 @@ export default class SearchItem {
       title: string,
       description: string,
       thumbnails: {
-        default: ThumbnailItem,
-        medium: ThumbnailItem,
-        high: ThumbnailItem,
-        standard: ThumbnailItem,
-        maxres: ThumbnailItem,
+        default: Thumbnail,
+        medium: Thumbnail,
+        high: Thumbnail,
+        standard: Thumbnail,
+        maxres: Thumbnail,
       },
       channelTitle: string,
       tags: string[],

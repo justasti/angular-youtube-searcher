@@ -1,42 +1,32 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-useless-constructor */
 import {
   Component,
   Input,
-  OnChanges,
-  OnInit,
 } from '@angular/core';
 
 import items from '../items';
+import { Sort } from '../shared/interfaces/sort.interface';
+import SearchItem from './models/search-item.model';
 
 @Component({
   selector: 'app-video-items',
   templateUrl: './video-items.component.html',
   styleUrls: ['./video-items.component.scss'],
 })
-export default class VideoItemsComponent implements OnInit, OnChanges {
-  @Input() sortBy: { sortParam: string, direction: string, keyphrase: string } = { sortParam: '', direction: 'asc', keyphrase: '' };
-
+export default class VideoItemsComponent {
   @Input() searchPhrase: string = '';
 
-  sortParam = '';
+  sortParam: string = '';
 
-  sortDirection = '';
+  sortDirection: string = '';
 
-  sortKeyphrase = '';
+  sortKeyphrase: string = '';
 
-  videos = items;
-
-  constructor() {}
-
-  ngOnInit(): void {
+  @Input()
+  set sort(newSort: Sort) {
+    this.sortParam = newSort.sortParam;
+    this.sortDirection = newSort.direction;
+    this.sortKeyphrase = newSort.keyphrase;
   }
 
-  ngOnChanges(): void {
-    this.sortParam = this.sortBy.sortParam;
-    this.sortDirection = this.sortBy.direction;
-    this.sortKeyphrase = this.sortBy.keyphrase;
-  }
+  videos: SearchItem[] = items;
 }

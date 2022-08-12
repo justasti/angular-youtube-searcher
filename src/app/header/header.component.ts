@@ -1,12 +1,8 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-useless-constructor */
 import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 
@@ -15,7 +11,7 @@ import {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export default class HeaderComponent implements OnInit {
+export default class HeaderComponent {
   showFilters: boolean = false;
 
   @Output() toggleFilters = new EventEmitter<boolean>();
@@ -25,11 +21,6 @@ export default class HeaderComponent implements OnInit {
   @Output() search = new EventEmitter<string>();
 
   @Input() searchPhrase: string = '';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   onToggleFilters(event: boolean) {
     this.showFilters = event;

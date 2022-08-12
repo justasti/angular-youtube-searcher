@@ -1,8 +1,6 @@
 /* eslint-disable class-methods-use-this */
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-useless-constructor */
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import Enums from 'src/app/shared/enums/enums.enum';
 import SearchItem from '../models/search-item.model';
 
 @Component({
@@ -10,27 +8,24 @@ import SearchItem from '../models/search-item.model';
   templateUrl: './search-item.component.html',
   styleUrls: ['./search-item.component.scss'],
 })
-export default class SearchItemComponent implements OnInit {
+export default class SearchItemComponent {
   @Input()
     item!: SearchItem;
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
   getBorderColor(item: SearchItem): {} {
     let color = '';
+    const MILISECONDS_PER_DAY = 86400000;
     const currentDate = new Date().toISOString();
     const dateDifference = Date.parse(currentDate) - Date.parse(item.snippet.publishedAt);
-    if (dateDifference / 86400000 > 182) {
-      color = 'red';
-    } else if (dateDifference / 86400000 > 30) {
-      color = 'yellow';
-    } else if (dateDifference / 86400000 > 7) {
-      color = 'green';
+    if (dateDifference / MILISECONDS_PER_DAY > 182) {
+      color = Enums.RED;
+    } else if (dateDifference / MILISECONDS_PER_DAY > 30) {
+      color = Enums.YELLOW;
+    } else if (dateDifference / MILISECONDS_PER_DAY > 7) {
+      color = Enums.GREEN;
     } else {
-      color = 'blue';
+      color = Enums.BLUE;
     }
-    return { borderBottom: `7px ${color} solid` };
+    return color;
   }
 }

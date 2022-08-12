@@ -1,6 +1,6 @@
-<div class="result-card" [ngStyle]="getBorderColor(item)">
+<div class="result-card" [style.border-bottom]="'7px solid ' + getBorderColor(item)">
   <img
-    [src]="item.snippet.thumbnails.maxres.url"
+    [src]="item?.snippet?.thumbnails?.maxres?.url || '../../../assets/images/picture-not-found.jpg'"
     alt=""
     class="video-thumbnail"
   />

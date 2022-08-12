@@ -1,4 +1,5 @@
-import { Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { Sort } from './shared/interfaces/sort.interface';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export default class AppComponent {
 
   showSearchResults: boolean = false;
 
-  @Output() sortBy: { sortParam: string, direction: string, keyphrase: string } = { sortParam: '', direction: '', keyphrase: '' };
+  sortBy: Sort = { sortParam: '', direction: '', keyphrase: '' };
 
   onToggleFilters() {
     this.showFilters = !this.showFilters;
