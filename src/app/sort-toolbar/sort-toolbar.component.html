@@ -1,0 +1,15 @@
+<div class="sort-toolbar">
+  <p>Sorting by:</p>
+  <ul>
+    <a href="#">
+      <li (click)="onSort('date')">date</li>
+    </a>
+    <a href="#">
+      <li (click)="onSort('views')">count of views</li>
+    </a>
+    <a href="#">
+      <li>by word or by sentence</li>
+    </a>
+  </ul>
+  <form><input type="text" name="search-by" id="search-by" (keyup)="sortByWord()" [(ngModel)]="sortKeyphrase"/></form>
+</div>
