@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rem;
+  .not-found {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+}
+.error-heading {
+  display: flex;
+  justify-content: center;
+  p {
+    font-size: 15rem;
+    font-weight: bold;
+    color: #fe2311;
+
+  }
+}
+img {
+  height: 15rem;
+  margin-right: 3rem;
+}

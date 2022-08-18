@@ -1,5 +1,5 @@
 <div class="header-components">
-  <img src="../../assets/images/logo.png" alt="youtube logo" class="logo-img" style='cursor: pointer;'/>
+  <a routerLink="/"><img src="../../assets/images/logo.png" alt="youtube logo" class="logo-img"/></a>
   <app-search-bar (toggleFilters)='onToggleFilters($event)' (toggleSearchResults)="onToggleSearchResults()" (search)='onSearch($event)'></app-search-bar>
-  <app-user-info></app-user-info>
+  <app-user-info routerLink="/login"></app-user-info>
 </div>

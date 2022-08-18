@@ -11,6 +11,8 @@ import SearchItemComponent from './youtube/components/video-items/search-item/se
 import SortPipe from './youtube/pipes/sort.pipe';
 import VideoItemsComponent from './youtube/components/video-items/video-items.component';
 import HeaderComponent from './shared/components/header/header.component';
+import AuthModule from './auth/auth.module';
+import AppRoutingModule from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import HeaderComponent from './shared/components/header/header.component';
     FilterPipe,
     SortPipe,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, AuthModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
