@@ -2,10 +2,9 @@ import {
   Component,
   Input,
 } from '@angular/core';
-
-import items from '../items';
-import { Sort } from '../shared/interfaces/sort.interface';
-import SearchItem from './models/search-item.model';
+import items from 'src/app/items';
+import { Sort } from 'src/app/shared/interfaces/sort.interface';
+import SearchItem from '../../models/search-item.model';
 
 @Component({
   selector: 'app-video-items',

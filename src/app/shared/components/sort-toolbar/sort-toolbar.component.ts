@@ -4,8 +4,8 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-import Enums from '../shared/enums/enums.enum';
-import { Sort } from '../shared/interfaces/sort.interface';
+import Enums from '../../enums/enums.enum';
+import { Sort } from '../../interfaces/sort.interface';
 
 @Component({
   selector: 'app-sort-toolbar',

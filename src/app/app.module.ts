@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
-import FilterPipe from './video-items/pipes/filter.pipe';
+import FilterPipe from './youtube/pipes/filter.pipe';
 import AppComponent from './app.component';
-import HeaderComponent from './header/header.component';
-import SearchBarComponent from './header/search-bar/search-bar.component';
-import UserInfoComponent from './header/user-info/user-info.component';
-import SortToolbarComponent from './sort-toolbar/sort-toolbar.component';
-import VideoItemsComponent from './video-items/video-items.component';
-import SearchItemComponent from './video-items/search-item/search-item.component';
-import SortPipe from './video-items/pipes/sort.pipe';
+import SearchBarComponent from './shared/components/header/search-bar/search-bar.component';
+import UserInfoComponent from './shared/components/header/user-info/user-info.component';
+import SortToolbarComponent from './shared/components/sort-toolbar/sort-toolbar.component';
+import SearchItemComponent from './youtube/components/video-items/search-item/search-item.component';
+import SortPipe from './youtube/pipes/sort.pipe';
+import VideoItemsComponent from './youtube/components/video-items/video-items.component';
+import HeaderComponent from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [

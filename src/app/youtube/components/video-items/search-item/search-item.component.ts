@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { Component, Input } from '@angular/core';
 import Enums from 'src/app/shared/enums/enums.enum';
-import SearchItem from '../models/search-item.model';
+import SearchItem from '../../../models/search-item.model';
 
 @Component({
   selector: 'app-search-item',
