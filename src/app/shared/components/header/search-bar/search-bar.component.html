@@ -1,7 +1,7 @@
 <div class="search-bar">
   <form>
     <input type="text" name="search" id="search" placeholder='Enter search phrase...' [(ngModel)]="searchPhrase"/>
-    <button type="submit" class="search-button" (click)="onToggleSearch()">search</button>
+    <button class="search-button" (click)="onToggleSearch()" routerLink="/videos" [queryParams]="{q: searchPhrase}">search</button>
   </form>
   <img
     src="../../../assets/images/filter.png"

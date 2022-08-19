@@ -1,7 +1,9 @@
 import {
   Component,
   Input,
+  OnInit,
 } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import items from 'src/app/items';
 import { Sort } from 'src/app/shared/interfaces/sort.interface';
 import SearchItem from '../../models/search-item.model';
@@ -11,7 +13,9 @@ import SearchItem from '../../models/search-item.model';
   templateUrl: './video-items.component.html',
   styleUrls: ['./video-items.component.scss'],
 })
-export default class VideoItemsComponent {
+export default class VideoItemsComponent implements OnInit {
+  constructor(private route: ActivatedRoute) {}
+
   @Input() searchPhrase: string = '';
 
   sortParam: string = '';
@@ -28,4 +32,10 @@ export default class VideoItemsComponent {
   }
 
   videos: SearchItem[] = items;
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      this.searchPhrase = String(params['q']);
+    });
+  }
 }

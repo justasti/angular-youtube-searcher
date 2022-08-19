@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import Enums from 'src/app/shared/enums/enums.enum';
 import SearchItem from '../../../models/search-item.model';
 
@@ -9,6 +10,8 @@ import SearchItem from '../../../models/search-item.model';
   styleUrls: ['./search-item.component.scss'],
 })
 export default class SearchItemComponent {
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
   @Input()
     item!: SearchItem;
 
@@ -27,5 +30,9 @@ export default class SearchItemComponent {
       color = Enums.BLUE;
     }
     return color;
+  }
+
+  onNavigate() {
+    this.router.navigate([this.item.id], { relativeTo: this.route });
   }
 }
