@@ -1,21 +1,38 @@
-import { Component } from '@angular/core';
-import LoginService from '../../services/login.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import AuthService from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export default class LoginPageComponent {
-  constructor(private loginService: LoginService) {}
+export default class LoginPageComponent implements OnInit {
+  username: string = '';
 
-  loggedIn: string | null = localStorage.getItem('logged-in');
+  password: string = '';
 
-  logUser() {
-    if (this.loggedIn === 'true') {
-      this.loginService.logOut();
-    } else {
-      this.loginService.logIn();
+  returnUrl!: string;
+
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
+
+  ngOnInit(): void {
+    // get return url from route parameters or default to '/main'
+    this.route.queryParams.subscribe((params: Params) => {
+      this.returnUrl = params['returnUrl'] || '/videos';
+    });
+  }
+
+  onSubmit() {
+    try {
+      this.authService.login(this.username, this.password);
+      this.router.navigate([this.returnUrl]);
+    } catch (error) {
+      alert(error); // eslint-disable-line no-alert
     }
   }
 }

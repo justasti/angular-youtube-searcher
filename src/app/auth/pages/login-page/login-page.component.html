@@ -1,7 +1,7 @@
 <div class="container">
-  <form>
-    <input type='text' name='username' id='username' placeholder='Enter your username'>
-    <input type='password' name='password' id='password' placeholder='Enter your password'>
-    <button (click)="logUser()" type='button'>Log In!</button>
+  <form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="username" name="username" placeholder='Enter your username' />
+    <input type="password" [(ngModel)]="password" value="" name="password" placeholder='Enter your password' />
+    <button class="btn" type="submit">Login</button>
   </form>
 </div>
