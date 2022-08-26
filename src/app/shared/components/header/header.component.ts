@@ -1,9 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import {
-  Component,
-  EventEmitter,
-  Output,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +9,7 @@ import {
 export default class HeaderComponent {
   showFilters: boolean = false;
 
-  @Output() toggleFilters = new EventEmitter<boolean>();
-
-  onToggleFilters(event: boolean) {
-    this.showFilters = event;
-    this.toggleFilters.emit(this.showFilters);
+  onToggleFilters() {
+    this.showFilters = !this.showFilters;
   }
 }

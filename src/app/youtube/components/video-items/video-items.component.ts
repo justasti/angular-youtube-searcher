@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import CoreService from 'src/app/core/services/core.service';
 import items from 'src/app/items';
@@ -21,27 +15,29 @@ export default class VideoItemsComponent implements OnInit {
 
   searchPhrase: string = '';
 
-  sortParam: string = '';
+  sortParam: string = 'views';
 
-  sortDirection: string = '';
+  sortDirection: string = 'desc';
 
   sortKeyphrase: string = '';
 
   videos: SearchItem[] = items;
 
-  sort: Sort = { sortParam: 'views', direction: 'desc', keyphrase: '' }
-
-  // @Input()
-  // set sort(newSort: Sort) {
-  //   this.sortParam = newSort.sortParam;
-  //   this.sortDirection = newSort.direction;
-  //   this.sortKeyphrase = newSort.keyphrase;
-  // }
+  sort: Sort = { sortParam: '', direction: '', keyphrase: '' };
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       this.searchPhrase = String(params['q']);
     });
-    // this.coreService.onSort(this.sort).subscribe((response: Sort) => { this.sort = response; });
+    this.coreService.onSort$.subscribe((res) => {
+      this.sortParam = res.sortParam;
+      this.sortDirection = res.direction;
+      this.sortKeyphrase = res.keyphrase;
+    });
+    this.coreService.onSortByKeyword$.subscribe((res) => {
+      this.sortParam = res.sortParam;
+      this.sortDirection = res.direction;
+      this.sortKeyphrase = res.keyphrase;
+    });
   }
 }

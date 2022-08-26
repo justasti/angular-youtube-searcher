@@ -1,12 +1,7 @@
 /* eslint-disable class-methods-use-this */
-import {
-  Component,
-  EventEmitter,
-  Output,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import CoreService from 'src/app/core/services/core.service';
 import Enums from '../../enums/enums.enum';
-import { Sort } from '../../interfaces/sort.interface';
 
 @Component({
   selector: 'app-sort-toolbar',
@@ -15,8 +10,6 @@ import { Sort } from '../../interfaces/sort.interface';
 })
 export default class SortToolbarComponent {
   constructor(private coreService: CoreService) {}
-
-  // @Output() sort = new EventEmitter<Sort>();
 
   direction: string = Enums.ASC;
 
@@ -31,11 +24,11 @@ export default class SortToolbarComponent {
     this.direction = this.direction === Enums.ASC ? Enums.DESC : Enums.ASC;
   }
 
-  // sortByWord() {
-  //   this.sort.emit({
-  //     sortParam: Enums.WORD,
-  //     direction: this.direction,
-  //     keyphrase: this.sortKeyphrase,
-  //   });
-  // }
+  sortByWord() {
+    this.coreService.onSortByKeyword({
+      sortParam: Enums.WORD,
+      direction: this.direction,
+      keyphrase: this.sortKeyphrase,
+    });
+  }
 }
