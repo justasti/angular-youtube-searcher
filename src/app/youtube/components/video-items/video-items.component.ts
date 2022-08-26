@@ -42,6 +42,9 @@ export default class VideoItemsComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       this.searchPhrase = String(params['q']);
     });
+    this.coreService.onSort$.subscribe(res => {
+      console.log(res);
+    })
     // this.coreService.onSort(this.sort).subscribe((response: Sort) => { this.sort = response; });
   }
 }
