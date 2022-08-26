@@ -9,13 +9,13 @@ import { Sort } from './shared/interfaces/sort.interface';
 export default class AppComponent {
   showFilters: boolean = false;
 
-  sortBy: Sort = { sortParam: '', direction: '', keyphrase: '' };
+  // sortBy: Sort = { sortParam: '', direction: '', keyphrase: '' };
 
   onToggleFilters() {
     this.showFilters = !this.showFilters;
   }
 
-  onSort(event: { sortParam: string, direction: string, keyphrase: string }) {
-    this.sortBy = event;
-  }
+  // onSort(event: { sortParam: string, direction: string, keyphrase: string }) {
+  //   this.sortBy = event;
+  // }
 }

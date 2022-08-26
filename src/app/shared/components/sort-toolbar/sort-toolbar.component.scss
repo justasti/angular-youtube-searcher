@@ -10,6 +10,10 @@ ul {
 li {
   list-style: none;
   padding-inline: 2rem;
+  cursor: pointer;
+  &:not(:last-of-type):hover {
+    font-weight: bold;
+  }
 }
 input {
   border: none;
