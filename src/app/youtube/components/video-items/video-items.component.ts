@@ -16,7 +16,7 @@ import SearchItem from '../../models/search-item.model';
 export default class VideoItemsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
-  @Input() searchPhrase: string = '';
+  searchPhrase: string = '';
 
   sortParam: string = '';
 

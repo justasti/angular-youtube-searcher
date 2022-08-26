@@ -2,7 +2,6 @@
 import {
   Component,
   EventEmitter,
-  Input,
   Output,
 } from '@angular/core';
 
@@ -16,23 +15,8 @@ export default class HeaderComponent {
 
   @Output() toggleFilters = new EventEmitter<boolean>();
 
-  @Output() toggleSearchResults = new EventEmitter<boolean>();
-
-  @Output() search = new EventEmitter<string>();
-
-  @Input() searchPhrase: string = '';
-
   onToggleFilters(event: boolean) {
     this.showFilters = event;
     this.toggleFilters.emit(this.showFilters);
-  }
-
-  onToggleSearchResults() {
-    this.toggleSearchResults.emit(true);
-  }
-
-  onSearch(event: string) {
-    this.searchPhrase = event;
-    this.search.emit(this.searchPhrase);
   }
 }

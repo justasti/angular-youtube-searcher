@@ -4,6 +4,8 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import CoreService from 'src/app/core/services/core.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,9 +13,9 @@ import {
   styleUrls: ['./search-bar.component.scss'],
 })
 export default class SearchBarComponent {
-  @Output() toggleFilters = new EventEmitter<boolean>();
+  constructor(private coreService: CoreService, private router: Router) {}
 
-  @Output() toggleSearchResults = new EventEmitter<boolean>();
+  @Output() toggleFilters = new EventEmitter<boolean>();
 
   @Output() search = new EventEmitter<string>();
 
@@ -27,7 +29,7 @@ export default class SearchBarComponent {
   }
 
   onToggleSearch() {
-    this.toggleSearchResults.emit(true);
-    this.search.emit(this.searchPhrase);
+    this.coreService.onSearch(this.searchPhrase);
+    this.router.navigate(['/videos'], { queryParams: { q: this.searchPhrase } });
   }
 }
