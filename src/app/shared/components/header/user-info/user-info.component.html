@@ -1,5 +1,4 @@
-<div class="user-info" *ngIf="loggedIn; else log_out">
+<div class="user-info" (click)="logout()">
   <p>Your name</p>
   <img src="../../../assets/images/profile-picture.png" alt="user profile" />
 </div>
-<ng-template #log_out><button (click)="logout()">Log out</button></ng-template>

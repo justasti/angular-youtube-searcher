@@ -21,7 +21,6 @@ export default class LoginPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // get return url from route parameters or default to '/main'
     this.route.queryParams.subscribe((params: Params) => {
       this.returnUrl = params['returnUrl'] || '/videos';
     });

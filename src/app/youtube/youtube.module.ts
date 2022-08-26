@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VideoDetailsComponent } from './pages/video-details/video-details.component';
+import YoutubeRoutingModule from './youtube-routing.module';
+import VideoDetailsComponent from './pages/video-details/video-details.component';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,10 @@ import { VideoDetailsComponent } from './pages/video-details/video-details.compo
   ],
   imports: [
     CommonModule,
+    YoutubeRoutingModule,
+  ],
+  exports: [
+
   ],
 })
-export class YoutubeModule { }
+export default class YoutubeModule { }

@@ -9,14 +9,13 @@ import AuthService from 'src/app/auth/services/auth.service';
   styleUrls: ['./user-info.component.scss'],
 })
 export default class UserInfoComponent {
-  buttonText: string = '';
-
   constructor(private authService: AuthService, private router: Router) {}
 
-  loggedIn = this.authService.isAuthenticated();
+  loggedIn: boolean = false;
 
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
+    this.loggedIn = this.authService.isAuthenticated();
   }
 }
