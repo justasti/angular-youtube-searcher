@@ -2,7 +2,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Enums from 'src/app/shared/enums/enums.enum';
-import SearchItem from '../../../models/search-item.model';
+import SearchItem from '../../models/search-item.model';
 
 @Component({
   selector: 'app-search-item',
