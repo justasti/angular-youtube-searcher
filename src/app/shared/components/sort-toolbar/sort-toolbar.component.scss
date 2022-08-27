@@ -1,0 +1,23 @@
+.sort-toolbar {
+  display: flex;
+  padding-block: 1rem;
+  background-color: #eee;
+  justify-content: center;
+}
+ul {
+  display: flex;
+}
+li {
+  list-style: none;
+  padding-inline: 2rem;
+  cursor: pointer;
+  &:not(:last-of-type):hover {
+    font-weight: bold;
+  }
+}
+input {
+  border: none;
+  outline: none;
+  height: 1.5rem;
+  width: 15rem;
+}

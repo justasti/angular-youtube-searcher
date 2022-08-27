@@ -1,4 +1,4 @@
-import SearchItem from './video-items/models/search-item.model';
+import SearchItem from './youtube/models/search-item.model';
 
 export default [
   new SearchItem(

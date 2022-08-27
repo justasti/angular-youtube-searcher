@@ -1,0 +1,6 @@
+<div class="header-components">
+  <a routerLink="/videos"><img src="../../assets/images/logo.png" alt="youtube logo" class="logo-img"/></a>
+  <app-search-bar (toggleFilters)='onToggleFilters()'></app-search-bar>
+  <app-user-info routerLink="/login"></app-user-info>
+</div>
+<app-sort-toolbar *ngIf="showFilters"></app-sort-toolbar>

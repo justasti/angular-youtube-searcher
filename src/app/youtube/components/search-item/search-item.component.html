@@ -1,0 +1,27 @@
+<div class="result-card" [style.border-bottom]="'7px solid ' + getBorderColor(item)">
+  <img
+    [src]="item?.snippet?.thumbnails?.maxres?.url || '../../../assets/images/picture-not-found.jpg'"
+    alt=""
+    class="video-thumbnail"
+  />
+  <div class="stats">
+    <span class="stats__item"
+      ><img class="stats__image" src="../../../assets/images/viewed.svg" />
+      <p>{{ item.statistics.viewCount }}</p></span
+    >
+    <span class="stats__item"
+      ><img class="stats__image" src="../../../assets/images/liked.svg" />
+      <p>{{ item.statistics.likeCount }}</p></span
+    >
+    <span class="stats__item"
+      ><img class="stats__image" src="../../../assets/images/dislike.svg" />
+      <p>{{ item.statistics.dislikeCount }}</p></span
+    >
+    <span class="stats__item"
+      ><img class="stats__image" src="../../../assets/images/comment.svg" />
+      <p>{{ item.statistics.commentCount }}</p></span
+    >
+  </div>
+  <h2 class="video-title">{{ item.snippet.title }}</h2>
+  <a class="more-info" (click)="onNavigate()">more...</a>
+</div>

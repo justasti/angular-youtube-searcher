@@ -1,5 +1,4 @@
 <div class="container">
-  <app-header (toggleFilters)='onToggleFilters()' (toggleSearchResults)="onToggleSearchResults($event)" (search)="onSearch($event)"></app-header>
-  <app-sort-toolbar *ngIf="showFilters" (sort)="onSort($event)"></app-sort-toolbar>
-  <app-video-items *ngIf="showSearchResults" [searchPhrase]='searchPhrase' [sort]='sortBy'></app-video-items>
+  <app-header></app-header>
+  <router-outlet></router-outlet>
 </div>
