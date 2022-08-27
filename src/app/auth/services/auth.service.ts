@@ -11,7 +11,7 @@ export default class AuthService {
   login(username: string, password: string): void {
     if (username === 'user' && password === 'pass') {
       this.username = username;
-      localStorage.setItem(this.username, 'faketoken');
+      localStorage.setItem('token', this.username);
       this.loggedIn = true;
     } else {
       throw new Error('wrong username or password');
