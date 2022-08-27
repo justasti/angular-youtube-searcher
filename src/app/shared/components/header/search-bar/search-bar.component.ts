@@ -17,8 +17,6 @@ export default class SearchBarComponent {
 
   @Output() toggleFilters = new EventEmitter<boolean>();
 
-  @Output() search = new EventEmitter<string>();
-
   searchPhrase: string = '';
 
   showFilters = false;
