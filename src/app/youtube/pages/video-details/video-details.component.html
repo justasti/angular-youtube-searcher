@@ -9,10 +9,10 @@
     <p class="description__title">Description:</p>
     <p class="description">{{ selectedVideo[0].snippet.description }}</p>
     <div class="statistics">
-      <span>1000</span>
-      <span>640</span>
-      <span>320</span>
-      <span>240</span>
+      <span><img class="stats__image" src="../../../../assets/images/viewed.svg" />{{ selectedVideo[0].statistics.viewCount }}</span>
+      <span><img class="stats__image" src="../../../../assets/images/liked.svg" />{{ selectedVideo[0].statistics.likeCount }}</span>
+      <span><img class="stats__image" src="../../../../assets/images/dislike.svg" />{{ selectedVideo[0].statistics.dislikeCount }}</span>
+      <span><img class="stats__image" src="../../../../assets/images/comment.svg" />{{ selectedVideo[0].statistics.commentCount }}</span>
     </div>
   </div>
 </div>

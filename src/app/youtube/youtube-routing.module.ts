@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import AuthGuard from '../auth/guards/auth.guard';
-import VideoItemsComponent from './components/video-items/video-items.component';
+import VideoItemsComponent from './pages/video-items/video-items.component';
 import VideoDetailsComponent from './pages/video-details/video-details.component';
 
 const appRoutes: Routes = [
