@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export default class AuthService {
-  loggedIn: boolean = false;
+  loggedIn: boolean = localStorage.getItem('token') !== null;
 
   private username: string = '';
 
@@ -26,6 +26,7 @@ export default class AuthService {
     localStorage.removeItem('token');
     this.loggedIn = false;
     this.isAuthenticated$.next(this.loggedIn);
+    console.log(localStorage.getItem('token'));
   }
 
   isAuthenticated(): boolean {

@@ -11,7 +11,7 @@ import AuthService from 'src/app/auth/services/auth.service';
 export default class UserInfoComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
-  loggedIn: boolean = false;
+  loggedIn: boolean = this.authService.isAuthenticated();
 
   logout() {
     this.authService.logout();
