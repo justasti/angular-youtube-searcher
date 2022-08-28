@@ -1,4 +1,4 @@
-<div class="result-card" [style.border-bottom]="'7px solid ' + getBorderColor(item)">
+<div *ngIf="item.snippet.title !== ''" class="result-card" [style.border-bottom]="'7px solid ' + getBorderColor(item)">
   <img
     [src]="item?.snippet?.thumbnails?.high?.url || '../../../assets/images/image-not-found.jpg'"
     alt=""
@@ -15,7 +15,7 @@
     >
     <span class="stats__item"
       ><img class="stats__image" src="../../../assets/images/dislike.svg" />
-      <p>{{ item?.statistics?.dislikeCount || '-1' }}</p></span
+      <p>{{ item?.statistics?.favoriteCount || '-1' }}</p></span
     >
     <span class="stats__item"
       ><img class="stats__image" src="../../../assets/images/comment.svg" />

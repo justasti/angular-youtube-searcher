@@ -2,7 +2,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Enums from 'src/app/shared/enums/enums.enum';
-import SearchItem from '../../models/search-item.model';
+import HttpRequestItem from 'src/app/shared/interfaces/http-request-item.interface';
 
 @Component({
   selector: 'app-search-item',
@@ -13,9 +13,9 @@ export default class SearchItemComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   @Input()
-    item!: SearchItem;
+    item!: HttpRequestItem;
 
-  getBorderColor(item: SearchItem): {} {
+  getBorderColor(item: HttpRequestItem): {} {
     let color = '';
     const MILISECONDS_PER_DAY = 86400000;
     const currentDate = new Date().toISOString();
@@ -33,6 +33,6 @@ export default class SearchItemComponent {
   }
 
   onNavigate() {
-    this.router.navigate([this.item.id.videoId], { relativeTo: this.route });
+    this.router.navigate([this.item.id], { relativeTo: this.route });
   }
 }

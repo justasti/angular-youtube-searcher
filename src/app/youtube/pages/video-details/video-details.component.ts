@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-// import videos from '../../../items';
-import SearchItem from '../../models/search-item.model';
+import HttpRequestItem from 'src/app/shared/interfaces/http-request-item.interface';
 import SearchService from '../../services/search.service';
 
 @Component({
@@ -16,22 +15,22 @@ export default class VideoDetailsComponent implements OnInit {
     private location: Location,
     private searchService: SearchService,
   ) {
-    this.searchService.apiData$.subscribe((data) => { this.videos = data.items; });
+    this.searchService.apiData$.subscribe((data) => { this.videos = data; });
   }
 
-  videos!: SearchItem[];
+  videos!: HttpRequestItem[];
 
-  selectedVideo!: SearchItem[];
+  selectedVideo!: HttpRequestItem[];
 
   selectedVideoId: string = '';
 
   @Input()
-    item!: SearchItem;
+    item!: HttpRequestItem;
 
   ngOnInit() {
     this.selectedVideoId = this.route.snapshot.params['id'];
     this.selectedVideo = this.videos
-      .filter((item) => item.id.videoId === this.selectedVideoId);
+      .filter((item) => item.id === this.selectedVideoId);
   }
 
   getParsedDate() {

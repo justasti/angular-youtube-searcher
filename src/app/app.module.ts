@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import AppComponent from './app.component';
 import HeaderComponent from './shared/components/header/header.component';
 import AppRoutingModule from './app-routing.module';
@@ -14,6 +14,7 @@ import VideoItemsComponent from './youtube/pages/video-items/video-items.compone
 import SearchItemComponent from './youtube/components/search-item/search-item.component';
 import FilterPipe from './youtube/pipes/filter.pipe';
 import SortPipe from './youtube/pipes/sort.pipe';
+import YoutubeInterceptor from './youtube/services/youtube-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,13 @@ import SortPipe from './youtube/pipes/sort.pipe';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: YoutubeInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export default class AppModule {}

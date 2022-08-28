@@ -16,7 +16,7 @@ import SearchService from 'src/app/youtube/services/search.service';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
-export default class SearchBarComponent {
+export default class SearchBarComponent implements OnInit {
   constructor(
     private router: Router,
     private searchService: SearchService,
@@ -25,7 +25,6 @@ export default class SearchBarComponent {
       debounceTime(500),
       distinctUntilChanged(),
     ).subscribe((model: string) => {
-      console.log(model);
       this.searchPhrase = model;
       this.onToggleSearch();
     });
@@ -39,14 +38,7 @@ export default class SearchBarComponent {
 
   showResults: boolean = false;
 
-  httpResponse: HttpRequestItem = {
-    etag: '',
-    items: [],
-    kind: '',
-    nextPageToken: '',
-    pageInfo: {},
-    regionCode: '',
-  };
+  httpResponse!: HttpRequestItem[];
 
   searchChanged: Subject<string> = new Subject<string>();
 
@@ -65,11 +57,13 @@ export default class SearchBarComponent {
     this.searchService.showSearchResults();
     this.router.navigate(['/videos'], { queryParams: { q: this.searchPhrase } });
     if (this.showResults) {
-      this.searchService.fetchVideos(this.searchPhrase).subscribe((data) => {
-        this.httpResponse = data as HttpRequestItem;
-        this.searchService.setData(data as HttpRequestItem);
-      });
+      return this.searchService.getVideos(this.searchPhrase)
+        .subscribe((response) => {
+          this.httpResponse = response as unknown as HttpRequestItem[];
+          this.searchService.setData(response as unknown as HttpRequestItem[]);
+        });
     }
+    return [];
   }
 
   ngOnInit(): void {
