@@ -20,7 +20,51 @@ export default class VideoDetailsComponent implements OnInit {
 
   videos!: HttpRequestItem[];
 
-  selectedVideo!: HttpRequestItem[];
+  selectedVideo: HttpRequestItem = {
+    etag: '',
+    id: '',
+    kind: '',
+    snippet: {
+      categoryId: '',
+      channelId: '',
+      channelTitle: '',
+      defaultAudioLanguage: '',
+      description: '',
+      liveBroadcastContent: '',
+      localized: {
+        title: '',
+        description: '',
+      },
+      publishedAt: '',
+      tags: [],
+      thumbnails: {
+        default: {
+          height: 0,
+          url: '',
+          width: 0,
+        },
+        high: {
+          height: 0,
+          url: '',
+          width: 0,
+        },
+        medium: {
+          height: 0,
+          url: '',
+          width: 0,
+        },
+      },
+      title: '',
+    },
+    statistics: {
+      viewCount: '',
+      likeCount: '',
+      favoriteCount: '',
+      commentCount: '',
+    },
+    items: [],
+    pageInfo: {},
+  };
 
   selectedVideoId: string = '';
 
@@ -29,12 +73,14 @@ export default class VideoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.selectedVideoId = this.route.snapshot.params['id'];
-    this.selectedVideo = this.videos
-      .filter((item) => item.id === this.selectedVideoId);
+    this.searchService.getVideosByIds(this.selectedVideoId)
+      .subscribe((response) => {
+        this.selectedVideo = response[0] as unknown as HttpRequestItem;
+      });
   }
 
   getParsedDate() {
-    return new Date(this.selectedVideo[0].snippet.publishedAt)
+    return new Date(this.selectedVideo.snippet.publishedAt)
       .toLocaleDateString('en-US', {
         weekday: 'long',
         month: 'long',
