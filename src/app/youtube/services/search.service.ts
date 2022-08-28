@@ -23,7 +23,7 @@ export default class SearchService {
   public apiData$ = this.apiData.asObservable();
 
   fetchVideos(query: string) {
-    const API_KEY: string = 'AIzaSyDxqqgmEPIzhOVlN_6gaT7vj4PhK7waZN0';
+    const API_KEY: string = 'AIzaSyBDTLskZ1tu8pzCp_hJez9S6O2eRA_GjFg';
     const API_URL: string = 'https://www.googleapis.com/youtube/v3/search';
     const URL_PARAMS: HttpParams = new HttpParams()
       .set('key', API_KEY)
@@ -39,30 +39,17 @@ export default class SearchService {
     this.apiData.next(data);
   }
 
-  // getVideos$ = new Subject<any[]>();
+  searchPhrase: string = '';
 
-  // fetchVideos(query: string): void {
-  //   const API_KEY: string = 'AIzaSyDxqqgmEPIzhOVlN_6gaT7vj4PhK7waZN0';
-  //   const API_URL: string = 'https://www.googleapis.com/youtube/v3/search';
-  //   const URL_PARAMS: HttpParams = new HttpParams()
-  //     .set('key', API_KEY)
-  //     .set('q', query)
-  //     .set('maxResults', 50)
-  //     .set('part', 'id')
-  //     .set('part', 'statistics')
-  //     .set('part', 'snippet');
+  private showResults = new BehaviorSubject<boolean>(false);
 
-  //   this.http.get<{
-  //     etag: string,
-  //     kind: string,
-  //     nextPageToken: string,
-  //     items: any[]
-  //   }>(API_URL, { params: URL_PARAMS }).subscribe((res) => {
-  //     this.videos = res.items;
-  //   });
-  // }
+  public showResults$ = this.showResults.asObservable();
 
-  // getVideos() {
-  //   this.getVideos$.next(this.videos);
-  // }
+  showSearchResults() {
+    if (this.searchPhrase.length > 2) {
+      this.showResults.next(true);
+    } else {
+      this.showResults.next(false);
+    }
+  }
 }

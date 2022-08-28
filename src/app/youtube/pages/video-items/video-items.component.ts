@@ -45,5 +45,8 @@ export default class VideoItemsComponent implements OnInit {
       this.sortDirection = res.direction;
       this.sortKeyphrase = res.keyphrase;
     });
+    // this.searchService.showResults$.subscribe((response) => {
+    //   this.showResults = response;
+    // });
   }
 }

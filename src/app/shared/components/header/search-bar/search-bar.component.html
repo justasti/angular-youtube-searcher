@@ -1,7 +1,13 @@
 <div class="search-bar">
   <form>
-    <input type="text" name="search" id="search" placeholder='Enter search phrase...' [(ngModel)]="searchPhrase"/>
-    <button class="search-button" (click)="onToggleSearch()">search</button>
+    <input
+      type="text"
+      name="search"
+      id="search"
+      placeholder='Enter search phrase...'
+      [(ngModel)]="searchPhrase"
+      (ngModelChange)="changed($event)"
+      />
   </form>
   <img
     src="../../../assets/images/filter.png"
