@@ -17,10 +17,6 @@ export default class SearchService {
 
   videos: any[] = [];
 
-  API_KEY: string = 'AIzaSyBDTLskZ1tu8pzCp_hJez9S6O2eRA_GjFg';
-
-  API_URL: string = 'https://www.googleapis.com/youtube/v3/search';
-
   private apiData = new BehaviorSubject<HttpRequestItem[]>([{
     etag: '',
     id: '',
@@ -92,7 +88,7 @@ export default class SearchService {
     const params = new HttpParams()
       .set('part', 'snippet')
       .set('type', 'video')
-      .set('maxResults', 2)
+      .set('maxResults', 24)
       .set('q', searchText);
     return this.http.get<SearchItem[]>('search', { params }).pipe(
       map((res) => {
