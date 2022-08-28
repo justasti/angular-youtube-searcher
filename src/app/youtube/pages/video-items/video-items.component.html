@@ -1,4 +1,4 @@
 <div class="results-grid">
-  <app-search-item *ngFor="let video of videos | filter: searchPhrase | sort: sortParam: sortDirection: sortKeyphrase" [item]='video'></app-search-item>
+  <app-search-item *ngFor="let video of videos | sort: sortParam: sortDirection: sortKeyphrase" [item]='video'></app-search-item>
 </div>
 <router-outlet></router-outlet>

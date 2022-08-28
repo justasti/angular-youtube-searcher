@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import videos from '../../../items';
+import { ActivatedRoute } from '@angular/router';
+// import videos from '../../../items';
 import SearchItem from '../../models/search-item.model';
+import SearchService from '../../services/search.service';
 
 @Component({
   selector: 'app-video-details',
@@ -10,15 +11,27 @@ import SearchItem from '../../models/search-item.model';
   styleUrls: ['./video-details.component.scss'],
 })
 export default class VideoDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location) {}
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private searchService: SearchService,
+  ) {
+    this.searchService.apiData$.subscribe((data) => { this.videos = data.items; });
+  }
 
-  selectedVideoId: string = '';
+  videos!: SearchItem[];
 
   selectedVideo!: SearchItem[];
 
+  selectedVideoId: string = '';
+
+  @Input()
+    item!: SearchItem;
+
   ngOnInit() {
     this.selectedVideoId = this.route.snapshot.params['id'];
-    this.selectedVideo = videos.filter((video) => video.id === this.selectedVideoId);
+    this.selectedVideo = this.videos
+      .filter((item) => item.id.videoId === this.selectedVideoId);
   }
 
   getParsedDate() {

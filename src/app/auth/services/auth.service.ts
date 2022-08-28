@@ -19,7 +19,7 @@ export default class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.username);
+    localStorage.removeItem('token');
     this.loggedIn = false;
   }
 

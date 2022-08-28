@@ -10,7 +10,7 @@ import SearchItem from '../../models/search-item.model';
   styleUrls: ['./search-item.component.scss'],
 })
 export default class SearchItemComponent {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   @Input()
     item!: SearchItem;
@@ -19,7 +19,7 @@ export default class SearchItemComponent {
     let color = '';
     const MILISECONDS_PER_DAY = 86400000;
     const currentDate = new Date().toISOString();
-    const dateDifference = Date.parse(currentDate) - Date.parse(item.snippet.publishedAt);
+    const dateDifference = Date.parse(currentDate) - Date.parse(item?.snippet?.publishedAt || '1990-01-01');
     if (dateDifference / MILISECONDS_PER_DAY > 182) {
       color = Enums.RED;
     } else if (dateDifference / MILISECONDS_PER_DAY > 30) {
@@ -33,6 +33,6 @@ export default class SearchItemComponent {
   }
 
   onNavigate() {
-    this.router.navigate([this.item.id], { relativeTo: this.route });
+    this.router.navigate([this.item.id.videoId], { relativeTo: this.route });
   }
 }

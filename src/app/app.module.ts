@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
-import FilterPipe from './youtube/pipes/filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 import AppComponent from './app.component';
+import HeaderComponent from './shared/components/header/header.component';
+import AppRoutingModule from './app-routing.module';
+import AuthModule from './auth/auth.module';
 import SearchBarComponent from './shared/components/header/search-bar/search-bar.component';
 import UserInfoComponent from './shared/components/header/user-info/user-info.component';
 import SortToolbarComponent from './shared/components/sort-toolbar/sort-toolbar.component';
-import SearchItemComponent from './youtube/components/search-item/search-item.component';
-import SortPipe from './youtube/pipes/sort.pipe';
 import VideoItemsComponent from './youtube/pages/video-items/video-items.component';
-import HeaderComponent from './shared/components/header/header.component';
-import AuthModule from './auth/auth.module';
-import AppRoutingModule from './app-routing.module';
+import SearchItemComponent from './youtube/components/search-item/search-item.component';
+import FilterPipe from './youtube/pipes/filter.pipe';
+import SortPipe from './youtube/pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import AppRoutingModule from './app-routing.module';
     FilterPipe,
     SortPipe,
   ],
-  imports: [BrowserModule, FormsModule, AuthModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AuthModule,
+    AppRoutingModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

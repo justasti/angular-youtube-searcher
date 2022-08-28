@@ -20,8 +20,8 @@ export default class SortPipe implements PipeTransform {
         .localeCompare(b.snippet.publishedAt));
     } else if (sortBy === Enums.VIEWS) {
       searchResults = videos
-        .sort((a: SearchItem, b:SearchItem) => parseInt(a.statistics.viewCount, 10)
-          - parseInt(b.statistics.viewCount, 10));
+        .sort((a: SearchItem, b:SearchItem) => parseInt(a?.statistics?.viewCount || '0', 10)
+          - parseInt(b?.statistics?.viewCount || '0', 10));
     } else if (sortBy === Enums.WORD && keyphrase !== undefined) {
       searchResults = videos.sort((a) => (a.snippet.title.toLowerCase()
         .includes(keyphrase.toLowerCase()) ? -1 : 1));
