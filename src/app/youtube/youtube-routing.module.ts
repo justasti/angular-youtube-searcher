@@ -14,6 +14,8 @@ const appRoutes: Routes = [
   {
     path: ':id',
     component: VideoDetailsComponent,
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
 ];
 
