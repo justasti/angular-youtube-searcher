@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import CoreService from 'src/app/core/services/core.service';
 import HttpRequestItem from 'src/app/shared/interfaces/http-request-item.interface';
-import { Sort } from 'src/app/shared/interfaces/sort.interface';
 import SearchService from '../../services/search.service';
 
 @Component({
@@ -17,7 +16,7 @@ export default class VideoItemsComponent implements OnInit {
     private searchService: SearchService,
   ) {
     this.searchService.apiData$
-      .subscribe((data) => { this.videos = data; console.log(data); });
+      .subscribe((data) => { this.videos = data; });
   }
 
   searchPhrase: string = '';
@@ -29,8 +28,6 @@ export default class VideoItemsComponent implements OnInit {
   sortKeyphrase: string = '';
 
   videos: HttpRequestItem[] = [];
-
-  sort: Sort = { sortParam: '', direction: '', keyphrase: '' };
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
