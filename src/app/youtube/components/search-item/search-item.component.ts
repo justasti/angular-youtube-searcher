@@ -2,7 +2,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Enums from 'src/app/shared/enums/enums.enum';
-import SearchItem from '../../models/search-item.model';
+import HttpRequestItem from 'src/app/shared/interfaces/http-request-item.interface';
 
 @Component({
   selector: 'app-search-item',
@@ -10,16 +10,16 @@ import SearchItem from '../../models/search-item.model';
   styleUrls: ['./search-item.component.scss'],
 })
 export default class SearchItemComponent {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   @Input()
-    item!: SearchItem;
+    item!: HttpRequestItem;
 
-  getBorderColor(item: SearchItem): {} {
+  getBorderColor(item: HttpRequestItem): {} {
     let color = '';
     const MILISECONDS_PER_DAY = 86400000;
     const currentDate = new Date().toISOString();
-    const dateDifference = Date.parse(currentDate) - Date.parse(item.snippet.publishedAt);
+    const dateDifference = Date.parse(currentDate) - Date.parse(item?.snippet?.publishedAt || '1990-01-01');
     if (dateDifference / MILISECONDS_PER_DAY > 182) {
       color = Enums.RED;
     } else if (dateDifference / MILISECONDS_PER_DAY > 30) {

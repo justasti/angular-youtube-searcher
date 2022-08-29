@@ -1,27 +1,27 @@
-<div class="result-card" [style.border-bottom]="'7px solid ' + getBorderColor(item)">
+<div *ngIf="item.snippet.title !== ''" class="result-card" [style.border-bottom]="'7px solid ' + getBorderColor(item)">
   <img
-    [src]="item?.snippet?.thumbnails?.maxres?.url || '../../../assets/images/picture-not-found.jpg'"
+    [src]="item.snippet.thumbnails.high.url || '../../../assets/images/image-not-found.jpg'"
     alt=""
     class="video-thumbnail"
   />
   <div class="stats">
     <span class="stats__item"
       ><img class="stats__image" src="../../../assets/images/viewed.svg" />
-      <p>{{ item.statistics.viewCount }}</p></span
+      <p>{{ item.statistics.viewCount || '-1' }}</p></span
     >
     <span class="stats__item"
       ><img class="stats__image" src="../../../assets/images/liked.svg" />
-      <p>{{ item.statistics.likeCount }}</p></span
+      <p>{{ item.statistics.likeCount || '-1' }}</p></span
     >
     <span class="stats__item"
       ><img class="stats__image" src="../../../assets/images/dislike.svg" />
-      <p>{{ item.statistics.dislikeCount }}</p></span
+      <p>{{ item.statistics.favoriteCount || '-1' }}</p></span
     >
     <span class="stats__item"
       ><img class="stats__image" src="../../../assets/images/comment.svg" />
-      <p>{{ item.statistics.commentCount }}</p></span
+      <p>{{ item.statistics.commentCount || '-1' }}</p></span
     >
   </div>
-  <h2 class="video-title">{{ item.snippet.title }}</h2>
+  <h2 class="video-title">{{ item.snippet.title || 'unknown' }}</h2>
   <a class="more-info" (click)="onNavigate()">more...</a>
 </div>

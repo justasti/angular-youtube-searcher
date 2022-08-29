@@ -6,8 +6,6 @@ import { Sort } from 'src/app/shared/interfaces/sort.interface';
   providedIn: 'root',
 })
 export default class CoreService {
-  searchPhrase: string = '';
-
   showFilters: boolean = false;
 
   showSearchResults: boolean = false;
@@ -24,10 +22,6 @@ export default class CoreService {
 
   onToggleSearchResults(event: boolean) {
     this.showSearchResults = event;
-  }
-
-  onSearch(event: string) {
-    this.searchPhrase = event;
   }
 
   onSort(event: Sort) {

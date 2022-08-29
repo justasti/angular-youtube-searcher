@@ -14,5 +14,6 @@ import VideoDetailsComponent from './pages/video-details/video-details.component
   exports: [
 
   ],
+  providers: [],
 })
 export default class YoutubeModule { }

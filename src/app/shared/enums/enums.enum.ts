@@ -8,6 +8,7 @@ enum Enums {
   VIEWS = 'views',
   WORD = 'word',
   YELLOW = 'yellow',
+  TOKEN = 'token',
 }
 
 export default Enums;

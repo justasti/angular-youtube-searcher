@@ -1,18 +1,18 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="selectedVideo.snippet.title !== ''">
   <button class='return' (click)='goBack()'><</button>
-  <img [src]="selectedVideo[0].snippet.thumbnails.maxres.url" alt="video thumbnail" class='video-preview'>
+  <img [src]="selectedVideo.snippet.thumbnails.high.url" alt="video thumbnail" class='video-preview'>
   <div class="textbox">
     <div class="headline">
-      <p class="headline__title">{{ selectedVideo[0].snippet.title }}</p>
+      <p class="headline__title">{{ selectedVideo.snippet.title }}</p>
       <p class="headline__date">{{ getParsedDate() }}</p>
     </div>
     <p class="description__title">Description:</p>
-    <p class="description">{{ selectedVideo[0].snippet.description }}</p>
+    <p class="description">{{ selectedVideo.snippet.description }}</p>
     <div class="statistics">
-      <span><img class="stats__image" src="../../../../assets/images/viewed.svg" />{{ selectedVideo[0].statistics.viewCount }}</span>
-      <span><img class="stats__image" src="../../../../assets/images/liked.svg" />{{ selectedVideo[0].statistics.likeCount }}</span>
-      <span><img class="stats__image" src="../../../../assets/images/dislike.svg" />{{ selectedVideo[0].statistics.dislikeCount }}</span>
-      <span><img class="stats__image" src="../../../../assets/images/comment.svg" />{{ selectedVideo[0].statistics.commentCount }}</span>
+      <span><img class="stats__image" src="../../../../assets/images/viewed.svg" />{{ selectedVideo.statistics.viewCount || -1 }}</span>
+      <span><img class="stats__image" src="../../../../assets/images/liked.svg" />{{ selectedVideo.statistics.likeCount || -1 }}</span>
+      <span><img class="stats__image" src="../../../../assets/images/dislike.svg" />{{ selectedVideo.statistics.favoriteCount || -1 }}</span>
+      <span><img class="stats__image" src="../../../../assets/images/comment.svg" />{{ selectedVideo.statistics.commentCount || -1 }}</span>
     </div>
   </div>
 </div>
