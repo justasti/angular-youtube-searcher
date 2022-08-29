@@ -22,7 +22,7 @@ export default class SearchBarComponent implements OnInit {
     private searchService: SearchService,
   ) {
     this.searchChanged.pipe(
-      debounceTime(500),
+      debounceTime(300),
       distinctUntilChanged(),
     ).subscribe((model: string) => {
       this.searchPhrase = model;

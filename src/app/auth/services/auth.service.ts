@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import Enums from 'src/app/shared/enums/enums.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export default class AuthService {
-  loggedIn: boolean = localStorage.getItem('token') !== null;
-
   private username: string = '';
 
-  public isAuthenticated$ = new Subject<boolean>();
+  public isAuthenticated$ = new BehaviorSubject<boolean>(localStorage
+    .getItem(Enums.TOKEN) !== null);
 
   login(username: string, password: string): void {
     if (username === 'user' && password === 'pass') {
       this.username = username;
       localStorage.setItem('token', this.username);
-      this.loggedIn = true;
-      this.isAuthenticated$.next(this.loggedIn);
+      this.isAuthenticated$.next(true);
     } else {
       throw new Error('wrong username or password');
     }
@@ -24,12 +23,10 @@ export default class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    this.loggedIn = false;
-    this.isAuthenticated$.next(this.loggedIn);
-    console.log(localStorage.getItem('token'));
+    this.isAuthenticated$.next(false);
   }
 
-  isAuthenticated(): boolean {
-    return this.loggedIn;
+  isAuthenticated(): Observable<boolean> {
+    return this.isAuthenticated$;
   }
 }

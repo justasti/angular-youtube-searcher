@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import AuthService from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -9,19 +10,24 @@ import AuthService from 'src/app/auth/services/auth.service';
   styleUrls: ['./user-info.component.scss'],
 })
 export default class UserInfoComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
-  loggedIn: boolean = this.authService.isAuthenticated();
+  loggedIn$!: BehaviorSubject<boolean>;
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);
-    this.loggedIn = this.authService.isAuthenticated();
+    this.loggedIn$ = this.authService.isAuthenticated$;
+  }
+
+  navigateToLogin(): void {
+    this.router.navigate(['login']);
   }
 
   ngOnInit(): void {
-    this.authService.isAuthenticated$.subscribe((response) => {
-      this.loggedIn = response;
-    });
+    this.loggedIn$ = this.authService.isAuthenticated$;
   }
 }

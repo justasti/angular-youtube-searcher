@@ -9,4 +9,4 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
 })
-export default class SharedModule { }
+export default class SharedModule {}

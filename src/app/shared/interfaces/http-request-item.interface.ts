@@ -2,7 +2,10 @@ import Thumbnail from './thumbnail.interface';
 
 export default interface HttpRequestItem {
   etag: string,
-  id: string,
+  id: {
+    videoId: string,
+    kind: string,
+  },
   kind: string,
   snippet: {
     categoryId: string,

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import HttpRequestItem from 'src/app/shared/interfaces/http-request-item.interface';
+import EmptyObjectGeneratorService from 'src/app/shared/services/empty-object-generator.service';
 import SearchService from '../../services/search.service';
 
 @Component({
@@ -14,57 +15,14 @@ export default class VideoDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private searchService: SearchService,
+    private objectGenerator: EmptyObjectGeneratorService,
   ) {
     this.searchService.apiData$.subscribe((data) => { this.videos = data; });
   }
 
   videos!: HttpRequestItem[];
 
-  selectedVideo: HttpRequestItem = {
-    etag: '',
-    id: '',
-    kind: '',
-    snippet: {
-      categoryId: '',
-      channelId: '',
-      channelTitle: '',
-      defaultAudioLanguage: '',
-      description: '',
-      liveBroadcastContent: '',
-      localized: {
-        title: '',
-        description: '',
-      },
-      publishedAt: '',
-      tags: [],
-      thumbnails: {
-        default: {
-          height: 0,
-          url: '',
-          width: 0,
-        },
-        high: {
-          height: 0,
-          url: '',
-          width: 0,
-        },
-        medium: {
-          height: 0,
-          url: '',
-          width: 0,
-        },
-      },
-      title: '',
-    },
-    statistics: {
-      viewCount: '',
-      likeCount: '',
-      favoriteCount: '',
-      commentCount: '',
-    },
-    items: [],
-    pageInfo: {},
-  };
+  selectedVideo: HttpRequestItem = this.objectGenerator.generateEmptyRequestObject();
 
   selectedVideoId: string = '';
 

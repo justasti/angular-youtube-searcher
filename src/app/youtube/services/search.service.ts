@@ -7,62 +7,21 @@ import {
   switchMap,
 } from 'rxjs';
 import HttpRequestItem from 'src/app/shared/interfaces/http-request-item.interface';
-import SearchItem from '../models/search-item.model';
+import EmptyObjectGeneratorService from 'src/app/shared/services/empty-object-generator.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export default class SearchService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private objectGenerator: EmptyObjectGeneratorService,
+  ) {}
 
-  videos: any[] = [];
+  videos: HttpRequestItem[] = [];
 
-  private apiData = new BehaviorSubject<HttpRequestItem[]>([{
-    etag: '',
-    id: '',
-    items: [],
-    kind: '',
-    pageInfo: '',
-    snippet: {
-      categoryId: '',
-      channelId: '',
-      channelTitle: '',
-      defaultAudioLanguage: '',
-      description: '',
-      liveBroadcastContent: '',
-      localized: {
-        description: '',
-        title: '',
-      },
-      publishedAt: '',
-
-      tags: [],
-      thumbnails: {
-        default: {
-          height: 0,
-          url: '',
-          width: 0,
-        },
-        high: {
-          height: 0,
-          url: '',
-          width: 0,
-        },
-        medium: {
-          height: 0,
-          url: '',
-          width: 0,
-        },
-      },
-      title: '',
-    },
-    statistics: {
-      commentCount: '',
-      favoriteCount: '',
-      likeCount: '',
-      viewCount: '',
-    },
-  }]);
+  private apiData = new BehaviorSubject<HttpRequestItem[]>([this
+    .objectGenerator.generateEmptyRequestObject()]);
 
   public apiData$ = this.apiData.asObservable();
 
@@ -84,15 +43,15 @@ export default class SearchService {
     }
   }
 
-  getVideos(searchText: string): Observable<SearchItem[]> {
+  getVideos(searchText: string): Observable<HttpRequestItem[]> {
     const params = new HttpParams()
       .set('part', 'snippet')
       .set('type', 'video')
       .set('maxResults', 24)
       .set('q', searchText);
-    return this.http.get<SearchItem[]>('search', { params }).pipe(
+    return this.http.get<HttpRequestItem[]>('search', { params }).pipe(
       map((res) => {
-        const videos: SearchItem[] = [];
+        const videos: HttpRequestItem[] = [];
         Object.entries(res).forEach(([key, val]: any) => {
           if (key === 'items') {
             [...val].forEach((vid) => videos.push(vid));
@@ -106,13 +65,13 @@ export default class SearchService {
     );
   }
 
-  getVideosByIds(...ids: string[]): Observable<SearchItem[]> {
+  getVideosByIds(...ids: string[]): Observable<HttpRequestItem[]> {
     const params = new HttpParams()
       .set('part', 'snippet,statistics')
       .set('id', ids.join());
-    return this.http.get<SearchItem[]>('videos', { params }).pipe(
+    return this.http.get<HttpRequestItem[]>('videos', { params }).pipe(
       map((res) => {
-        const videosById: SearchItem[] = [];
+        const videosById: HttpRequestItem[] = [];
         Object.entries(res).forEach(([key, val]: any) => {
           if (key === 'items') {
             [...val].forEach((vid) => videosById.push(vid));
