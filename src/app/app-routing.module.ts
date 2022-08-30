@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import AuthGuard from './auth/guards/auth.guard';
 import LoginPageComponent from './auth/pages/login-page/login-page.component';
 import PageNotFoundComponent from './core/pages/page-not-found-component/page-not-found.component';
 import AdminPageComponent from './youtube/pages/admin-page/admin-page.component';
@@ -15,7 +16,7 @@ const appRoutes: Routes = [
     path: 'videos',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.default),
   },
-  { path: 'admin', component: AdminPageComponent },
+  { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
   {
     path: '404',
     component: PageNotFoundComponent,
