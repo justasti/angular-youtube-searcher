@@ -1,0 +1,49 @@
+<div class="container">
+  <form [formGroup]="newCardForm" (ngSubmit)="onFormSubmit()">
+    <h2 class="form-title">Create a new card</h2>
+    <div class="input-field">
+      <label for="">Title*</label>
+      <input type="text" formControlName='title' id="title">
+      <div
+        class="invalid-hint"
+        [class.modal-active]="!newCardForm.get('title')?.valid && newCardForm.get('title')?.touched"
+      >
+        <p>{{ titleErrorText }}</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <label for="description">Description</label>
+      <input type="text" formControlName='description' id="description">
+      <div
+        class="invalid-hint"
+        [class.modal-active]="!newCardForm.get('description')?.valid && newCardForm.get('description')?.touched"
+      >
+        <p>{{ descriptionErrorText }}</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <label for="img-url">Image URL*</label>
+      <input type="text" formControlName='imgUrl' id="img-url">
+      <div
+        class="invalid-hint"
+        [class.modal-active]="!newCardForm.get('imgUrl')?.valid && newCardForm.get('imgUrl')?.touched"
+      >
+        <p>{{ imgUrlErrorText }}</p>
+      </div>
+    </div>
+    <div class="input-field">
+      <label for="video-url">Video URL*</label>
+      <input type="text" formControlName='videoUrl' id="video-url">
+      <div
+        class="invalid-hint"
+        [class.modal-active]="!newCardForm.get('videoUrl')?.valid && newCardForm.get('videoUrl')?.touched"
+      >
+        <p>{{ videoUrlErrorText }}</p>
+      </div>
+    </div>
+    <p class='legend'>Fields marked by * are required</p>
+    <button>Submit</button>
+    <div class="alert success-alert" *ngIf="formIsValid === 'true'">Form succesfully submitted!</div>
+    <div class="alert failure-alert" *ngIf="formIsValid === 'false'">Check your errors and try again!</div>
+    </form>
+</div>

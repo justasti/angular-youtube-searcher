@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import AppComponent from './app.component';
 import HeaderComponent from './shared/components/header/header.component';
@@ -31,7 +31,6 @@ import YoutubeInterceptor from './youtube/services/youtube-interceptor.service';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     AuthModule,
     AppRoutingModule,
     HttpClientModule,
