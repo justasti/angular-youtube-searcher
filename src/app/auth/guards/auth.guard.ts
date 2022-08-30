@@ -14,11 +14,15 @@ import AuthService from '../services/auth.service';
   providedIn: 'root',
 })
 export default class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    this.authService.isAuthenticated$.subscribe((response) => { this.authenticated = response; });
+  }
+
+  authenticated: boolean = false;
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     :Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.isAuthenticated()) {
+    if (this.authenticated) {
       return true;
     }
     this.router.navigate([''], { queryParams: { returnUrl: state.url } });
