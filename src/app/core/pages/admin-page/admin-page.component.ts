@@ -1,6 +1,13 @@
 /* eslint-disable class-methods-use-this */
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-admin-page',
@@ -18,9 +25,26 @@ export default class AdminPageComponent implements OnInit {
 
   videoUrlErrorText: string = 'Please enter a video URL';
 
+  dateErrorText: string = 'Please enter a creation date';
+
   formIsValid: string = '';
 
   validUrlPattern: string = '((http|https)://)(www.|)[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)';
+
+  onFormSubmit() {
+    this.newCardForm.markAllAsTouched();
+    if (this.newCardForm.valid) {
+      this.newCardForm.reset();
+      this.formIsValid = 'true';
+    } else {
+      this.formIsValid = 'false';
+    }
+  }
+
+  checkFutureDate(): ValidatorFn {
+    return (control: AbstractControl) : ValidationErrors | null => (new Date()
+      .toISOString() > control.value ? null : { futureDate: true });
+  }
 
   ngOnInit() {
     this.newCardForm = new FormGroup({
@@ -34,6 +58,7 @@ export default class AdminPageComponent implements OnInit {
         Validators.pattern(this.validUrlPattern)]),
       videoUrl: new FormControl(null, [Validators.required,
         Validators.pattern(this.validUrlPattern)]),
+      date: new FormControl(null, [Validators.required, this.checkFutureDate()]),
     });
 
     this.newCardForm.get('title')?.valueChanges.subscribe(() => {
@@ -75,15 +100,15 @@ export default class AdminPageComponent implements OnInit {
         this.videoUrlErrorText = 'Please enter a valid video URL (i.e. https://www.example.com)';
       }
     });
-  }
 
-  onFormSubmit() {
-    if (this.newCardForm.valid) {
-      this.newCardForm.reset();
-      this.formIsValid = 'true';
-    } else {
-      this.formIsValid = 'false';
-      this.newCardForm.markAllAsTouched();
-    }
+    this.newCardForm.get('date')?.valueChanges.subscribe(() => {
+      const date = this.newCardForm.get('date');
+
+      if (date?.hasError('required')) {
+        this.dateErrorText = 'Please enter a creation date';
+      } else if (date?.hasError('futureDate')) {
+        this.dateErrorText = 'Creation date cannot be in the future';
+      }
+    });
   }
 }

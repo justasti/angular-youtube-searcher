@@ -1,6 +1,6 @@
 <div class="user-info" *ngIf="loggedIn$ | async; else sign_in">
-  <button class='sign_button' (click)="logout()">Sign out</button>
-  <a routerLink="/admin"><img src="../../../assets/images/profile-picture.png" alt="user profile" /></a>  
+  <button (click)="logout()">Sign out</button>
+  <a routerLink="/admin"><img src="../../../assets/images/profile-picture.png" alt="user profile" /></a>
 </div>
 <ng-template #sign_in>
   <div class="user-info">

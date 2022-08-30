@@ -5,7 +5,7 @@
   flex-direction: column;
   padding: 2rem;
   width: 100%;
-  height: 90vh;
+  height: 85vh;
 }
 h2 {
   margin-bottom: 3rem;
@@ -32,18 +32,23 @@ form {
   padding: 0.5rem;
   position: absolute;
   bottom: 0px;
+  right: 0px;
+  line-height: 1.25rem;
   transform: translateY(calc(100% + 5px));
   opacity: 0;
   transition: opacity 0.5s ease-in;
+  z-index: 1;
   p {
     color: #fff;
+    white-space: pre;
   }
 }
 .modal-active {
   opacity: 1;
 }
 }
-input[type=text] {
+input[type=text],
+input[type=password] {
   font: inherit;
   padding: 0.75rem;
   border-radius: 0.5rem;
@@ -55,23 +60,6 @@ input[type=text] {
 label {
   font-size: 0.75rem;
   margin-bottom: 0.25rem;
-}
-button {
-  background-color: #fe2311;
-  border-radius: 0.5rem;
-  border: none;
-  border-bottom: 2px solid #9d180c;
-  border-right: 2px solid #9d180c;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  padding: 0.75rem 1.25rem;
-  margin-left: auto;
-  &:hover {
-    border: none;
-    border-top: 2px solid #ffa59c;
-    border-left: 2px solid #ffa59c;
-  }
 }
 input.ng-touched.ng-invalid {
   border: 1px red solid;

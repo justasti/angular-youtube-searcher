@@ -41,6 +41,16 @@
         <p>{{ videoUrlErrorText }}</p>
       </div>
     </div>
+    <div class="input-field">
+      <label for="date">Date created*</label>
+      <input type="date" formControlName='date' id="date">
+      <div
+        class="invalid-hint"
+        [class.modal-active]="!newCardForm.get('date')?.valid && newCardForm.get('date')?.touched"
+      >
+        <p>{{ dateErrorText }}</p>
+      </div>
+    </div>
     <p class='legend'>Fields marked by * are required</p>
     <button>Submit</button>
     <div class="alert success-alert" *ngIf="formIsValid === 'true'">Form succesfully submitted!</div>

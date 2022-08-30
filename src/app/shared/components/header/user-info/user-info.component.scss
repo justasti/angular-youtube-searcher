@@ -11,20 +11,3 @@ img {
 p {
   font-size: 1.25rem;
 }
-.sign_button {
-  padding: 0.5rem;
-  background: #fe2311;
-  cursor: pointer;
-  color: #fff;
-  font-family: inherit;
-  font-weight: bold;
-  font-size: 1.25rem;
-  border: #9c0d00 1px solid;
-  border-radius: 0.5rem;
-  outline: none;
-  &:hover {
-    background: #fff;
-    border: #fe2311 1px solid;
-    color: #fe2311;
-  }
-}

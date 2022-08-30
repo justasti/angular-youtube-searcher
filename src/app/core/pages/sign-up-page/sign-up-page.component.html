@@ -1,0 +1,38 @@
+<div class='container'>
+  <form [formGroup]="newUserForm" (ngSubmit)="onSubmitForm()">
+    <h2 class='form-title'>Register a new account</h2>
+    <div class='input-field'>
+      <label for='username'>Email address</label>
+      <input type='text' formControlName='email' id='email'>
+      <div
+        class='invalid-hint'
+        [class.modal-active]="!newUserForm.get('email')?.valid && newUserForm.get('email')?.touched"
+      >
+        <p>{{ emailErrorText }}</p>
+      </div>
+    </div>
+    <div class='input-field'>
+      <label for='password'>Password</label>
+      <input type='password' formControlName='password' id='password'>
+      <div
+        class='invalid-hint'
+        [class.modal-active]="!newUserForm.get('password')?.valid && newUserForm.get('password')?.touched"
+      >
+        <p>{{ passwordErrorText }}</p>
+      </div>
+    </div>
+    <div class='input-field'>
+      <label for='confirm'>Confirm password</label>
+      <input type='password' formControlName='confirm' id='confirm'>
+      <div
+        class='invalid-hint'
+        [class.modal-active]="!newUserForm.get('confirm')?.valid && newUserForm.get('confirm')?.touched"
+      >
+        <p>{{ confirmErrorText }}</p>
+      </div>
+    </div>
+    <button>sign up!</button>
+    <div class="alert success-alert" *ngIf="formIsValid === 'true'">Form succesfully submitted!</div>
+    <div class="alert failure-alert" *ngIf="formIsValid === 'false'">Check your errors and try again!</div>
+  </form>
+</div>
