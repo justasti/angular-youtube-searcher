@@ -1,8 +1,11 @@
 .sort-toolbar {
+  color: #eee;
+  font-size: 0.8rem;
   display: flex;
   padding-block: 1rem;
-  background-color: #eee;
+  background-color: #404040;
   justify-content: center;
+  align-items: center;
 }
 ul {
   display: flex;

@@ -1,8 +1,8 @@
 .user-info {
   display: flex;
   align-items: center;
-  justify-content: end;
-  margin-right: 1rem;
+  justify-content: center;
+  margin-right: 2rem;
 }
 img {
   height: 2rem;
@@ -10,4 +10,12 @@ img {
 }
 p {
   font-size: 1.25rem;
+}
+button {
+  margin-left: 0;
+}
+@media screen and (max-width: 950px) {
+  .user-info {
+    justify-content: end;
+  }
 }

@@ -2,25 +2,25 @@
   display: grid;
   grid-template-columns: 6fr 4fr;
   background-color: #eee;
-  box-shadow: 4px 4px 18px 1px rgba(204,204,204,1);
+  box-shadow: 4px 4px 18px 1px #232323;
   position: relative;
   margin-top: 4rem;
+  max-width: 1400px;
+  margin-inline: auto;
 }
 .return {
-  border: none;
-  cursor: pointer;
+  border-radius: 0.5rem 0 0 0.5rem;
   position: absolute;
   display: grid;
   place-content: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 2rem;
-  height: 2rem;
-  background-color: red;
-  color: #fff;
+  height: 3rem;
   transform: translateX(-100%);
 }
 .video-preview {
   width: 100%;
+  aspect-ratio: 16/9;
 }
 .textbox {
   display: flex;
@@ -52,7 +52,26 @@
   }
 }
 .statistics {
-  margin-top: auto;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 1200px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem;
+  }
+  .headline {
+    flex-direction: column;
+    align-items: flex-start;
+    &__title {
+      justify-self: flex-start;
+    }
+    &__date {
+      justify-self: flex-start;
+      white-space: break-spaces;
+    }
+  }
 }
