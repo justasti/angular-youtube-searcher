@@ -9,18 +9,51 @@
 }
 ul {
   display: flex;
+  align-items: center;
+  > li:hover {
+    font-weight: bold;
+  }
 }
 li {
   list-style: none;
   padding-inline: 2rem;
   cursor: pointer;
-  &:not(:last-of-type):hover {
-    font-weight: bold;
-  }
+
+}
+.keyword-sort {
+  display: flex;
+  align-items: center;
 }
 input {
   border: none;
   outline: none;
   height: 1.5rem;
-  width: 15rem;
+  width: min(15rem, 50vw);
+  background-color: #333;
+  border: 1px solid #666;
+  border-radius: 5px;
+}
+p {
+  font-weight: bold;
+}
+@media only screen and (max-width: 700px) {
+  .sort-toolbar {
+    padding-inline: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    li {
+      padding: 0.5rem 1rem 0.5rem 0;
+    }
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
 }
