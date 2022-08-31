@@ -25,13 +25,15 @@ li {
   align-items: center;
 }
 input {
-  border: none;
-  outline: none;
-  height: 1.5rem;
-  width: min(15rem, 50vw);
   background-color: #333;
+  border: none;
   border: 1px solid #666;
   border-radius: 5px;
+  color: #fff;
+  height: 1.5rem;
+  outline: none;
+  padding-inline: 0.5rem;
+  width: min(15rem, 50vw);
 }
 p {
   font-weight: bold;

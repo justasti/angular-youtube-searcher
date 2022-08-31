@@ -17,16 +17,6 @@ import {
 export default class AdminPageComponent implements OnInit {
   newCardForm: FormGroup = new FormGroup({});
 
-  titleErrorText: string = 'Please enter a title';
-
-  descriptionErrorText: string = '';
-
-  imgUrlErrorText: string = 'Please enter an image URL';
-
-  videoUrlErrorText: string = 'Please enter a video URL';
-
-  dateErrorText: string = 'Please enter a creation date';
-
   formIsValid: string = '';
 
   validUrlPattern: string = '((http|https)://)(www.|)[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)';
@@ -39,6 +29,39 @@ export default class AdminPageComponent implements OnInit {
     } else {
       this.formIsValid = 'false';
     }
+  }
+
+  checkFormFields(field: string) {
+    const fieldToCheck = this.newCardForm.get(field);
+    switch (field) {
+      case 'title':
+        if (fieldToCheck?.hasError('required')) return 'required';
+        if (fieldToCheck?.hasError('minlength')) return 'short';
+        if (fieldToCheck?.hasError('maxlength')) return 'long';
+        break;
+      case 'description':
+        if (fieldToCheck?.hasError('maxlength')) return 'long';
+        break;
+      case 'imgUrl':
+        if (fieldToCheck?.hasError('required')) return 'required';
+        if (fieldToCheck?.hasError('pattern')) return 'invalid';
+        break;
+      case 'videoUrl':
+        if (fieldToCheck?.hasError('required')) return 'required';
+        if (fieldToCheck?.hasError('pattern')) return 'invalid';
+        break;
+      case 'date':
+        if (fieldToCheck?.hasError('required')) return 'required';
+        if (fieldToCheck?.hasError('futureDate')) return 'future';
+        break;
+      default:
+        break;
+    }
+    return false;
+  }
+
+  displayModal(modal: string) {
+    return !this.newCardForm.get(modal)?.valid && this.newCardForm.get(modal)?.touched;
   }
 
   checkFutureDate(): ValidatorFn {
@@ -59,56 +82,6 @@ export default class AdminPageComponent implements OnInit {
       videoUrl: new FormControl(null, [Validators.required,
         Validators.pattern(this.validUrlPattern)]),
       date: new FormControl(null, [Validators.required, this.checkFutureDate()]),
-    });
-
-    this.newCardForm.get('title')?.valueChanges.subscribe(() => {
-      const title = this.newCardForm.get('title');
-
-      if (title?.hasError('required')) {
-        this.titleErrorText = 'Please enter a title';
-      } else if (title?.hasError('minlength')) {
-        this.titleErrorText = 'A title should be at least 3 characters long';
-      } else if (title?.hasError('maxlength')) {
-        this.titleErrorText = 'A title should be no longer than 20 characters';
-      }
-    });
-
-    this.newCardForm.get('description')?.valueChanges.subscribe(() => {
-      const description = this.newCardForm.get('description');
-
-      if (description?.hasError('maxlength')) {
-        this.descriptionErrorText = 'A description shouldn\'t be longer than 255 characters';
-      }
-    });
-
-    this.newCardForm.get('imgUrl')?.valueChanges.subscribe(() => {
-      const imgUrl = this.newCardForm.get('imgUrl');
-
-      if (imgUrl?.hasError('required')) {
-        this.imgUrlErrorText = 'Please enter an image URL';
-      } else if (imgUrl?.hasError('pattern')) {
-        this.imgUrlErrorText = 'Please enter a valid image URL (i.e. https://www.example.com)';
-      }
-    });
-
-    this.newCardForm.get('videoUrl')?.valueChanges.subscribe(() => {
-      const videoUrl = this.newCardForm.get('videoUrl');
-
-      if (videoUrl?.hasError('required')) {
-        this.videoUrlErrorText = 'Please enter a video URL';
-      } else if (videoUrl?.hasError('pattern')) {
-        this.videoUrlErrorText = 'Please enter a valid video URL (i.e. https://www.example.com)';
-      }
-    });
-
-    this.newCardForm.get('date')?.valueChanges.subscribe(() => {
-      const date = this.newCardForm.get('date');
-
-      if (date?.hasError('required')) {
-        this.dateErrorText = 'Please enter a creation date';
-      } else if (date?.hasError('futureDate')) {
-        this.dateErrorText = 'Creation date cannot be in the future';
-      }
     });
   }
 }
