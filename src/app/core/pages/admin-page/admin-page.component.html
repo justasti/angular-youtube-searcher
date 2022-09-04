@@ -6,11 +6,11 @@
       <input type="text" formControlName='title' id="title">
       <div
         class="invalid-hint"
-        [class.modal-active]="displayModal('title')"
+        [class.modal-active]="displayErrorMessage('title')"
       >
-        <p *ngIf="checkFormFields('title') === 'required'">Please enter a title</p>
-        <p *ngIf="checkFormFields('title') === 'short'">A title should be at least 3 characters long</p>
-        <p *ngIf="checkFormFields('title') === 'long'">A title should be no longer than 20 characters</p>
+        <p *ngIf="hasError('title', 'required')">Please enter a title</p>
+        <p *ngIf="hasError('title', 'minlength')">A title should be at least 3 characters long</p>
+        <p *ngIf="hasError('title', 'maxlength')">A title should be no longer than 20 characters</p>
       </div>
     </div>
     <div class="input-field">
@@ -18,9 +18,9 @@
       <input type="text" formControlName='description' id="description">
       <div
         class="invalid-hint"
-        [class.modal-active]="displayModal('description')"
+        [class.modal-active]="displayErrorMessage('description')"
       >
-        <p *ngIf="checkFormFields('description') === 'long'">A description shouldn't be longer than 255 characters</p>
+        <p *ngIf="hasError('description', 'maxlength')">A description shouldn't be longer than 255 characters</p>
       </div>
     </div>
     <div class="input-field">
@@ -28,10 +28,10 @@
       <input type="text" formControlName='imgUrl' id="img-url">
       <div
         class="invalid-hint"
-        [class.modal-active]="displayModal('imgUrl')"
+        [class.modal-active]="displayErrorMessage('imgUrl')"
       >
-        <p *ngIf="checkFormFields('imgUrl') === 'required'">Please enter an image URL</p>
-        <p *ngIf="checkFormFields('imgUrl') === 'invalid'">Please enter a valid image URL (i.e. https://www.example.com)</p>
+        <p *ngIf="hasError('imgUrl', 'required')">Please enter an image URL</p>
+        <p *ngIf="hasError('imgUrl', 'pattern')">Please enter a valid image URL (i.e. https://www.example.com)</p>
       </div>
     </div>
     <div class="input-field">
@@ -39,10 +39,10 @@
       <input type="text" formControlName='videoUrl' id="video-url">
       <div
         class="invalid-hint"
-        [class.modal-active]="displayModal('videoUrl')"
+        [class.modal-active]="displayErrorMessage('videoUrl')"
       >
-        <p *ngIf="checkFormFields('videoUrl') === 'required'">Please enter a video URL</p>
-        <p *ngIf="checkFormFields('videoUrl') === 'invalid'">Please enter a valid video URL (i.e. https://www.example.com)</p>
+        <p *ngIf="hasError('videoUrl', 'required')">Please enter a video URL</p>
+        <p *ngIf="hasError('videoUrl', 'pattern')">Please enter a valid video URL (i.e. https://www.example.com)</p>
       </div>
     </div>
     <div class="input-field">
@@ -50,10 +50,10 @@
       <input type="date" formControlName='date' id="date">
       <div
         class="invalid-hint"
-        [class.modal-active]="displayModal('date')"
+        [class.modal-active]="displayErrorMessage('date')"
       >
-        <p *ngIf="checkFormFields('date') === 'required'">Please enter a creation date</p>
-        <p *ngIf="checkFormFields('date') === 'future'">Creation date cannot be in the future</p>
+        <p *ngIf="hasError('date', 'required')">Please enter a creation date</p>
+        <p *ngIf="hasError('date', 'futureDate')">Creation date cannot be in the future</p>
       </div>
     </div>
     <p class='legend'>Fields marked by * are required</p>

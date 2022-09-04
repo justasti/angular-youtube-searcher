@@ -6,9 +6,10 @@
       <input type='text' formControlName='email' id='email'>
       <div
         class='invalid-hint'
-        [class.modal-active]="!newUserForm.get('email')?.valid && newUserForm.get('email')?.touched"
+        [class.modal-active]="displayErrorMessage('email')"
       >
-        <p>{{ emailErrorText }}</p>
+        <p *ngIf="hasError('email', 'required')">Please enter an email address</p>
+        <p *ngIf="hasError('email', 'pattern')">Please enter a valid email address</p>
       </div>
     </div>
     <div class='input-field'>
@@ -16,9 +17,17 @@
       <input type='password' formControlName='password' id='password'>
       <div
         class='invalid-hint'
-        [class.modal-active]="!newUserForm.get('password')?.valid && newUserForm.get('password')?.touched"
+        [class.modal-active]="displayErrorMessage('password')"
       >
-        <p>{{ passwordErrorText }}</p>
+        <p *ngIf="hasError('password', 'required')">Please enter a password</p>
+        <p *ngIf="hasError('password', 'notStrong')">
+          Password is not strong enough.<br>
+          Strong password consists of: <br>
+          ⚬ at least 8 characters<br>
+          ⚬ a mixture of both uppercase and lowercase letters<br>
+          ⚬ a mixture of letters and numbers<br>
+          ⚬ inclusion of at least one special character, e.g., ! @ # ? ]
+        </p>
       </div>
     </div>
     <div class='input-field'>
@@ -26,9 +35,10 @@
       <input type='password' formControlName='confirm' id='confirm'>
       <div
         class='invalid-hint'
-        [class.modal-active]="!newUserForm.get('confirm')?.valid && newUserForm.get('confirm')?.touched"
+        [class.modal-active]="displayErrorMessage('confirm')"
       >
-        <p>{{ confirmErrorText }}</p>
+        <p *ngIf="hasError('confirm', 'required')">Please confirm your password</p>
+        <p *ngIf="hasError('confirm', 'noMatch')">Your passwords does not match</p>
       </div>
     </div>
     <button>sign up!</button>

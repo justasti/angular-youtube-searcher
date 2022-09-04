@@ -22,12 +22,6 @@ export default class SignUpPageComponent implements OnInit {
 
   validEmailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
-  emailErrorText: string = 'Please enter an email address';
-
-  passwordErrorText: string = 'Please enter a password';
-
-  confirmErrorText: string = 'Please confirm your password';
-
   formIsValid: string = '';
 
   onSubmitForm(): void {
@@ -66,6 +60,18 @@ export default class SignUpPageComponent implements OnInit {
     };
   }
 
+  hasError(field: string, error: string): boolean | undefined {
+    return this.newUserForm.get(field)?.hasError(error);
+  }
+
+  displayErrorMessage(field: string) {
+    const control = this.newUserForm.get(field);
+    if (control) {
+      return !control.valid && control.touched;
+    }
+    return false;
+  }
+
   ngOnInit() {
     this.newUserForm = new FormGroup({
       email: new FormControl(null, [
@@ -74,36 +80,6 @@ export default class SignUpPageComponent implements OnInit {
       ]),
       password: new FormControl(null, [Validators.required, this.checkPasswordStrength()]),
       confirm: new FormControl(null, [Validators.required, this.checkPasswordMatch()]),
-    });
-
-    this.newUserForm.get('email')?.valueChanges.subscribe(() => {
-      const email = this.newUserForm.get('email');
-
-      if (email?.hasError('required')) {
-        this.emailErrorText = 'Please enter an email address';
-      } else if (email?.hasError('pattern')) {
-        this.emailErrorText = 'Please enter a valid email address';
-      }
-    });
-
-    this.newUserForm.get('password')?.valueChanges.subscribe(() => {
-      const password = this.newUserForm.get('password');
-
-      if (password?.hasError('required')) {
-        this.passwordErrorText = 'Please enter a password';
-      } else if (password?.hasError('notStrong')) {
-        this.passwordErrorText = 'Password is not strong enough.\nStrong password consists of: \n\t⚬ at least 8 characters\n\t⚬ a mixture of both uppercase and lowercase letters\n\t⚬ a mixture of letters and numbers\n\t⚬ inclusion of at least one special character, e.g., ! @ # ? ]';
-      }
-    });
-
-    this.newUserForm.get('confirm')?.valueChanges.subscribe(() => {
-      const confirm = this.newUserForm.get('confirm');
-
-      if (confirm?.hasError('required')) {
-        this.confirmErrorText = 'Please confirm your password';
-      } else if (confirm?.hasError('noMatch')) {
-        this.confirmErrorText = 'Your passwords does not match';
-      }
     });
   }
 }

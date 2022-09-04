@@ -31,37 +31,16 @@ export default class AdminPageComponent implements OnInit {
     }
   }
 
-  checkFormFields(field: string) {
-    const fieldToCheck = this.newCardForm.get(field);
-    switch (field) {
-      case 'title':
-        if (fieldToCheck?.hasError('required')) return 'required';
-        if (fieldToCheck?.hasError('minlength')) return 'short';
-        if (fieldToCheck?.hasError('maxlength')) return 'long';
-        break;
-      case 'description':
-        if (fieldToCheck?.hasError('maxlength')) return 'long';
-        break;
-      case 'imgUrl':
-        if (fieldToCheck?.hasError('required')) return 'required';
-        if (fieldToCheck?.hasError('pattern')) return 'invalid';
-        break;
-      case 'videoUrl':
-        if (fieldToCheck?.hasError('required')) return 'required';
-        if (fieldToCheck?.hasError('pattern')) return 'invalid';
-        break;
-      case 'date':
-        if (fieldToCheck?.hasError('required')) return 'required';
-        if (fieldToCheck?.hasError('futureDate')) return 'future';
-        break;
-      default:
-        break;
-    }
-    return false;
+  hasError(field: string, error: string): boolean | undefined {
+    return this.newCardForm.get(field)?.hasError(error);
   }
 
-  displayModal(modal: string) {
-    return !this.newCardForm.get(modal)?.valid && this.newCardForm.get(modal)?.touched;
+  displayErrorMessage(field: string) {
+    const control = this.newCardForm.get(field);
+    if (control) {
+      return !control.valid && control.touched;
+    }
+    return false;
   }
 
   checkFutureDate(): ValidatorFn {
