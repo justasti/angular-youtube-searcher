@@ -10,4 +10,34 @@
 body {
   font-family: "Roboto", sans-serif;
   color: #444;
+  background-color: #333;
+}
+button {
+  background-color: #fe2311;
+  border-radius: 0.5rem;
+  border: none;
+  border-bottom: 2px solid #9d180c;
+  border-right: 2px solid #9d180c;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.75rem 1.25rem;
+  margin-left: auto;
+  text-transform: uppercase;
+  &:hover {
+    border: none;
+    border-top: 2px solid #ffa59c;
+    border-left: 2px solid #ffa59c;
+  }
+}
+.alert {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
+.success-alert {
+  color: green;
+}
+.failure-alert {
+  color: red;
 }

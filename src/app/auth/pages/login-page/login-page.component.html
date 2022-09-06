@@ -1,7 +1,14 @@
-<div class="container">
-  <form (ngSubmit)="onSubmit()">
-    <input type="text" [(ngModel)]="username" name="username" placeholder='Enter your username' />
-    <input type="password" [(ngModel)]="password" value="" name="password" placeholder='Enter your password' />
-    <button class="btn" type="submit">Login</button>
+<div class='container'>
+  <form (ngSubmit)='onSubmit()'>
+    <div class='input-field'>
+      <label for='username'>Username</label>
+      <input type='text' [(ngModel)]='username' id='username' name='username' />
+    </div>
+    <div class='input-field'>
+      <label for='password'>Password</label>
+      <input type='password' [(ngModel)]='password' id='password' name='password' />
+    </div>
+    <button>Login</button>
+    <a routerLink='/signup'>click here to create a new account</a>
   </form>
 </div>
